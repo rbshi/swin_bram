@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Thu Mar  9 22:41:45 2017
+# Process ID: 4491
+# Log file: /home/rbshi/swin_bram/syn/module_eval/planAhead.log
+# Journal file: /home/rbshi/swin_bram/syn/module_eval/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+create_project project_1 /home/rbshi/swin_bram/syn/module_eval/project_1 -part xc7vx690tffg1930-2
+add_files -norecurse /home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+launch_runs synth_1
+wait_on_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+open_run impl_1
+reset_run impl_1
+launch_runs impl_1
+wait_on_run impl_1
+refresh_design
+reset_run impl_1
+launch_runs impl_1
+wait_on_run impl_1
+refresh_design
+close_design

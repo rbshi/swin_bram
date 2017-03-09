@@ -1,0 +1,9 @@
+#
+# PlanAhead(TM)
+# htr.txt: a PlanAhead-generated description of how-to-repeat the
+#          the basic steps of a run.  Note that runme.bat/sh needs
+#          to be invoked for PlanAhead to track run status.
+# Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+#
+
+xst -ifn "sdp_ram.xst" -ofn "sdp_ram.srp" -intstyle ise

@@ -1,0 +1,106 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Thu Mar  9 22:41:45 2017
+# Process ID: 4491
+# Log file: /home/rbshi/swin_bram/syn/module_eval/planAhead.log
+# Journal file: /home/rbshi/swin_bram/syn/module_eval/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [/data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+INFO: [Common 17-81] Feature available: PartialReconfiguration
+create_project project_1 /home/rbshi/swin_bram/syn/module_eval/project_1 -part xc7vx690tffg1930-2
+add_files -norecurse /home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+launch_runs synth_1
+[Thu Mar  9 22:43:59 2017] Launched synth_1...
+Run output will be captured here: /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/synth_1/runme.log
+launch_runs impl_1
+Release 14.7 - ngc2edif P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Release 14.7 - ngc2edif P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design sdp_ram.ngc ...
+WARNING:NetListWriters:298 - No output is written to sdp_ram.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+  finished :Prep
+Writing EDIF netlist file sdp_ram.edif ...
+ngc2edif: Total memory usage is 103264 kilobytes
+
+Parsing EDIF File [./project_1/project_1.data/cache/sdp_ram_ngc_ed96fed8.edif]
+Finished Parsing EDIF File [./project_1/project_1.data/cache/sdp_ram_ngc_ed96fed8.edif]
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Loading clock regions from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex7/virtex7/xc7vx690t/ClockRegion.xml
+Loading clock buffers from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex7/virtex7/xc7vx690t/ClockBuffers.xml
+Loading clock placement rules from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex7/ClockPlacerRules.xml
+Loading package pin functions from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex7/PinFunctions.xml...
+Loading package from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex7/virtex7/xc7vx690t/ffg1930/Package.xml
+Loading io standards from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex7/IOStandards.xml
+Loading device configuration modes from /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex7/ConfigModes.xml
+Loading list of drcs for the architecture : /data/tools/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex7/drc.xml
+[Thu Mar  9 22:45:35 2017] Launched impl_1...
+Run output will be captured here: /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 3384.547 ; gain = 601.953
+open_run impl_1
+Parsing EDIF File [./project_1/project_1.runs/impl_1/sdp_ram.edf]
+Finished Parsing EDIF File [./project_1/project_1.runs/impl_1/sdp_ram.edf]
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Designutils 20-669] Parsing Placement File : /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/sdp_ram_routed.xdl
+INFO: [Designutils 20-658] Finished Parsing Placement File : /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/sdp_ram_routed.xdl
+INFO: [Designutils 20-671] Placed 2 instances
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  BUFGP => BUFGP (IBUF, BUFG): 1 instances
+  INV => LUT1: 1 instances
+
+Phase 0 | Netlist Checksum: d829e5d0
+open_run: Time (s): cpu = 00:00:22 ; elapsed = 00:00:12 . Memory (MB): peak = 3444.031 ; gain = 59.484
+reset_run impl_1
+launch_runs impl_1
+Parsing EDIF File [./project_1/project_1.data/cache/sdp_ram_ngc_ed96fed8.edif]
+Finished Parsing EDIF File [./project_1/project_1.data/cache/sdp_ram_ngc_ed96fed8.edif]
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+[Thu Mar  9 22:53:12 2017] Launched impl_1...
+Run output will be captured here: /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/runme.log
+refresh_design
+Parsing EDIF File [./project_1/project_1.runs/impl_1/sdp_ram.edf]
+Finished Parsing EDIF File [./project_1/project_1.runs/impl_1/sdp_ram.edf]
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Designutils 20-669] Parsing Placement File : /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/sdp_ram_routed.xdl
+INFO: [Designutils 20-658] Finished Parsing Placement File : /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/sdp_ram_routed.xdl
+INFO: [Designutils 20-671] Placed 2 instances
+refresh_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:11 . Memory (MB): peak = 3456.438 ; gain = 0.000
+reset_run impl_1
+reset_run: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 3456.438 ; gain = 0.000
+launch_runs impl_1
+Parsing EDIF File [./project_1/project_1.data/cache/sdp_ram_ngc_ed96fed8.edif]
+Finished Parsing EDIF File [./project_1/project_1.data/cache/sdp_ram_ngc_ed96fed8.edif]
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+[Thu Mar  9 22:58:31 2017] Launched impl_1...
+Run output will be captured here: /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/runme.log
+refresh_design
+Parsing EDIF File [./project_1/project_1.runs/impl_1/sdp_ram.edf]
+Finished Parsing EDIF File [./project_1/project_1.runs/impl_1/sdp_ram.edf]
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Designutils 20-669] Parsing Placement File : /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/sdp_ram_routed.xdl
+INFO: [Designutils 20-658] Finished Parsing Placement File : /home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/sdp_ram_routed.xdl
+INFO: [Designutils 20-671] Placed 2 instances
+refresh_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:11 . Memory (MB): peak = 3456.438 ; gain = 0.000
+close_design
+exit
+INFO: [Common 17-206] Exiting PlanAhead at Fri Mar 10 00:19:01 2017...
+INFO: [Common 17-83] Releasing license: PlanAhead

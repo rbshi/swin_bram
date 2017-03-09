@@ -1,0 +1,379 @@
+# Preference setting overrides
+gui_create_pref_key -category {Globals} -key {load_detail_for_funcov} -value_type {bool} -value {false}
+
+# State setting overrides
+gui_state_default_create -off -ini
+gui_set_state_value -category Layout -key child_console_size_x -value 1439
+gui_set_state_value -category Layout -key child_console_size_y -value 179
+gui_set_state_value -category Layout -key child_data_size_x -value 174
+gui_set_state_value -category Layout -key child_data_size_y -value 561
+gui_set_state_value -category Layout -key child_hier_col3 -value {-1}
+gui_set_state_value -category Layout -key child_hier_colpd -value 0
+gui_set_state_value -category Layout -key child_hier_size_x -value 174
+gui_set_state_value -category Layout -key child_hier_size_y -value 561
+gui_set_state_value -category Layout -key child_source_docknewline -value false
+gui_set_state_value -category Layout -key child_source_pos_x -value {-2}
+gui_set_state_value -category Layout -key child_source_pos_y -value {-15}
+gui_set_state_value -category Layout -key child_source_size_x -value 1094
+gui_set_state_value -category Layout -key child_source_size_y -value 556
+gui_set_state_value -category Layout -key main_pos_x -value 7
+gui_set_state_value -category Layout -key main_pos_y -value 31
+gui_set_state_value -category Layout -key main_size_x -value 1446
+gui_set_state_value -category Layout -key main_size_y -value 878
+gui_create_state_key -category FindDialog -key m_pMatchCase -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pMatchWord -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pUseCombo -value_type string -value {}
+gui_create_state_key -category FindDialog -key m_pWrapAround -value_type bool -value true
+gui_state_default_create -off
+
+# Begin command logging
+gui_open_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+gui_list_expand -id  Hier.1   tb_sdp_ram
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram -current_item_type Scope  -selected  { tb_sdp_ram   }
+gui_list_select -id Data.1 -selected  { tb_sdp_ram.clk   }
+gui_list_select -id Data.1 { tb_sdp_ram.rst_n  {tb_sdp_ram.rd_addr[8:0]}  {tb_sdp_ram.wr_addr[8:0]}  {tb_sdp_ram.wr_data_in[63:0]}  {tb_sdp_ram.wr_data_mask[7:0]}  tb_sdp_ram.wr_data_en  {tb_sdp_ram.rd_data_out[63:0]}  {tb_sdp_ram.in_file[31:0]}  {tb_sdp_ram.out_file[31:0]}  {tb_sdp_ram.ii[31:0]}  {tb_sdp_ram.jj[31:0]}  {tb_sdp_ram.temp[31:0]}  {tb_sdp_ram.input_data[99:0][63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.input_data[99:0][63:0]}   }
+gui_list_select -id Data.1 -selected  { tb_sdp_ram.clk   }
+gui_list_select -id Data.1 { tb_sdp_ram.rst_n  {tb_sdp_ram.rd_addr[8:0]}  {tb_sdp_ram.wr_addr[8:0]}  {tb_sdp_ram.wr_data_in[63:0]}  {tb_sdp_ram.wr_data_mask[7:0]}  tb_sdp_ram.wr_data_en  {tb_sdp_ram.rd_data_out[63:0]}  {tb_sdp_ram.in_file[31:0]}  {tb_sdp_ram.out_file[31:0]}  {tb_sdp_ram.ii[31:0]}  {tb_sdp_ram.jj[31:0]}  {tb_sdp_ram.temp[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.ii[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.out_file[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.rd_data_out[63:0]}   }
+gui_list_select -id Data.1 -selected  { tb_sdp_ram.clk  tb_sdp_ram.rst_n  {tb_sdp_ram.rd_addr[8:0]}  {tb_sdp_ram.wr_addr[8:0]}  {tb_sdp_ram.wr_data_in[63:0]}  {tb_sdp_ram.wr_data_mask[7:0]}  tb_sdp_ram.wr_data_en  {tb_sdp_ram.rd_data_out[63:0]}   }
+gui_open_window Wave
+gui_list_add -id Wave.1 -from Data.1 { tb_sdp_ram.clk tb_sdp_ram.rst_n {tb_sdp_ram.rd_addr[8:0]} {tb_sdp_ram.wr_addr[8:0]} {tb_sdp_ram.wr_data_in[63:0]} {tb_sdp_ram.wr_data_mask[7:0]} tb_sdp_ram.wr_data_en {tb_sdp_ram.rd_data_out[63:0]} } -insertionbar
+gui_wv_zoom_timerange -id  Wave.1 0 445
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.clk   }
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_marker_move -id  Wave.1 C1 10000
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_marker_move -id  Wave.1 C1 15000
+gui_marker_move -id  Wave.1 C1 25000
+gui_marker_move -id  Wave.1 C1 15000
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.rst_n   }
+gui_wv_scroll_hslidermove -id  Wave.1 5583
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_addr[8:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.wr_addr[8:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_addr[8:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.wr_addr[8:0]}   }
+gui_marker_move -id  Wave.1 C1 1000000
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.wr_data_in[63:0]}   }
+gui_wv_scroll_hslidermove -id  Wave.1 5137
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.wr_data_mask[7:0]}   }
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.wr_data_en   }
+gui_marker_move -id  Wave.1 C1 1005000
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_data_out[63:0]}   }
+gui_wv_scroll_hslidermove -id  Wave.1 5324
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.wr_data_in[63:0]}   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram   }
+gui_list_select -id Data.1 -selected  { tb_sdp_ram.u_sdp_ram.clk   }
+gui_list_select -id Data.1 -selected  { tb_sdp_ram.u_sdp_ram.clk  tb_sdp_ram.u_sdp_ram.rst_n  {tb_sdp_ram.u_sdp_ram.rd_addr[8:0]}  {tb_sdp_ram.u_sdp_ram.wr_addr[8:0]}  {tb_sdp_ram.u_sdp_ram.wr_data_in[63:0]}  {tb_sdp_ram.u_sdp_ram.wr_data_mask[7:0]}  tb_sdp_ram.u_sdp_ram.wr_data_en  {tb_sdp_ram.u_sdp_ram.rd_data_out[63:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { tb_sdp_ram.u_sdp_ram.clk tb_sdp_ram.u_sdp_ram.rst_n {tb_sdp_ram.u_sdp_ram.rd_addr[8:0]} {tb_sdp_ram.u_sdp_ram.wr_addr[8:0]} {tb_sdp_ram.u_sdp_ram.wr_data_in[63:0]} {tb_sdp_ram.u_sdp_ram.wr_data_mask[7:0]} tb_sdp_ram.u_sdp_ram.wr_data_en {tb_sdp_ram.u_sdp_ram.rd_data_out[63:0]} } -insertionbar
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_data_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.clk  tb_sdp_ram.rst_n  {tb_sdp_ram.rd_addr[8:0]}  {tb_sdp_ram.wr_addr[8:0]}  {tb_sdp_ram.wr_data_in[63:0]}  {tb_sdp_ram.wr_data_mask[7:0]}  tb_sdp_ram.wr_data_en  {tb_sdp_ram.rd_data_out[63:0]}   }
+gui_sg_create  Group2 
+gui_list_add_group -id  Wave.1   {Group2} 
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after Group2 {{tb_sdp_ram.clk} {tb_sdp_ram.rst_n} {tb_sdp_ram.rd_addr[8:0]} {tb_sdp_ram.wr_addr[8:0]} {tb_sdp_ram.wr_data_in[63:0]} {tb_sdp_ram.wr_data_mask[7:0]} {tb_sdp_ram.wr_data_en} {tb_sdp_ram.rd_data_out[63:0]}}
+gui_list_select -id Wave.1 -selected  { Group2   }
+gui_list_set_insertion_bar -id Wave.1 -group Group2 -pos below
+gui_sg_create Group2|Group1
+gui_list_add_group -id Wave.1 {{Group2|Group1}} -after Group2
+gui_list_select -id Wave.1 -selected  { Group2|Group1   }
+gui_delete_selected -id  Wave.1
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.clk   }
+gui_list_select -id Wave.1 -selected  { Group2   }
+gui_save_session -savedb none -view {Wave.1 }  -file /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl
+gui_close_window -window TopLevel.2
+gui_close_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+gui_open_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+set DIALOGS::LOADFILEDIR [file dirname /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl]; gui_load_session -ignore_errors -file /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl
+gui_wv_zoom_timerange -id  Wave.1 905278 1139980
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.wr_data_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.u_sdp_ram.wr_data_en   }
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.rd_data_out[63:0]}   }
+gui_close_window -window TopLevel.2
+gui_close_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+gui_open_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+set DIALOGS::LOADFILEDIR [file dirname /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl]; gui_load_session -ignore_errors -file /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl
+gui_wv_zoom_timerange -id  Wave.1 905278 1139980
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.wr_data_mask[7:0]}   }
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.u_sdp_ram.wr_data_en   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.wr_addr[8:0]}   }
+gui_wv_scroll_hslidermove -id  Wave.1 6537
+gui_list_set_selected_property -id Wave.1 -radix decimal
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.rd_addr[8:0]}   }
+gui_list_set_selected_property -id Wave.1 -radix decimal
+gui_wv_scroll_hslidermove -id  Wave.1 11052
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.u_sdp_ram.wr_data_en   }
+gui_marker_move -id  Wave.1 C1 1995000
+gui_marker_move -id  Wave.1 C1 2005000
+gui_wv_scroll_hslidermove -id  Wave.1 11582
+gui_wv_scroll_hslidermove -id  Wave.1 11275
+gui_marker_move -id  Wave.1 C1 2105000
+gui_marker_move -id  Wave.1 C1 2115100
+gui_marker_move -id  Wave.1 C1 2105000
+gui_wv_scroll_hslidermove -id  Wave.1 11401
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.rd_data_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { tb_sdp_ram.u_sdp_ram.wr_data_en   }
+gui_wv_scroll_hslidermove -id  Wave.1 14871
+gui_marker_move -id  Wave.1 C1 2755100
+gui_marker_move -id  Wave.1 C1 2745000
+gui_marker_move -id  Wave.1 C1 2755100
+gui_wv_scroll_hslidermove -id  Wave.1 14927
+gui_list_expand -id  Hier.1   tb_sdp_ram
+gui_list_expand -id  Hier.1   tb_sdp_ram.u_sdp_ram
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst   }
+gui_list_expand -id  Hier.1   tb_sdp_ram.u_sdp_ram.RAMB36E1_inst
+gui_list_expand -id  Hier.1   tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]} } -insertionbar
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_sg_create  Group3 
+gui_list_add_group -id  Wave.1   {Group3} 
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after Group3 {{tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}}
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_set_selected_property -id Wave.1 -radix decimal
+gui_marker_move -id  Wave.1 C1 2677216
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_wv_scroll_hslidermove -id  Wave.1 395
+gui_marker_move -id  Wave.1 C1 1015000
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]} {{tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}} 
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after Group3 {{tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}}
+gui_marker_move -id  Wave.1 C1 2125000
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dipb_in[7:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dipa_in[3:0]}   }
+gui_list_sort -id  Data.1   {Variable}
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPB[7:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPA[3:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPA[3:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPB[7:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPA[3:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPA[3:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPB[7:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPA[3:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPB[7:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIPB[7:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]} } -insertionbar
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]}   }
+gui_list_move  -id  Wave.1    -sid  Wave.1   -after {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]} {{tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]}} 
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIA[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DIB[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOB[31:0]}   }
+gui_wv_zoom_timerange -id  Wave.1 954966 1148768
+gui_wv_zoom_timerange -id  Wave.1 1008002 1043661
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOPA[7:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.di_x[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.di_x[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_out[31:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_out[31:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_outreg[31:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_outreg[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out[31:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_out[31:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_outreg[31:0]} } -insertionbar
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_buf[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_ecc_read -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_ecc_read   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.fn_dip_ecc -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.fn_dip_ecc   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.chk_for_col_msg -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.chk_for_col_msg   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.chk_for_col_msg -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.chk_for_col_msg   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.fn_dip_ecc -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.fn_dip_ecc   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_ecc_read -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_ecc_read   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_col -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_col   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_ox -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_ox   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_wr_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_wr_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_x_buf -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_x_buf   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_rd_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_ox -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_ox   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_col -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram_col   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ram   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_ox_wr_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_wr_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_b -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_b   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_a -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_rd_ram_a   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_ecc_read -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.task_col_ecc_read   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.fn_dip_ecc -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.fn_dip_ecc   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.chk_for_col_msg -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.chk_for_col_msg   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP   }
+gui_wv_zoom_timerange -id  Wave.1 2082406 2208716
+gui_wv_zoom_timerange -id  Wave.1 2110331 2123085
+gui_wv_zoom_timerange -id  Wave.1 2114111 2115953
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 2
+gui_wv_scroll_hslidermove -id  Wave.1 206
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_data_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_addr[8:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.wr_addr[8:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.DOA[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_mux[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.doa_out_out[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dia_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dib_in[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addrb_in[15:0]}   }
+gui_wv_zoom_timerange -id  Wave.1 1032688 1199160
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_out[31:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_outreg[31:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_out[31:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out_mux[63:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_out[31:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.dob_buf[31:0]}   }
+gui_list_select -id Hier.1 -current_item_name tb_sdp_ram.u_sdp_ram.RAMB36E1_inst -current_item_type Scope  -selected  { tb_sdp_ram.u_sdp_ram.RAMB36E1_inst   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.INT_RAMB_SDP.addra_in[15:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRARDADDR[15:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRBWRADDR[15:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRARDADDR[15:0]}   }
+gui_list_select -id Data.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRARDADDR[15:0]}  {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRBWRADDR[15:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRARDADDR[15:0]} {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRBWRADDR[15:0]} } -insertionbar
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRARDADDR[15:0]}   }
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.u_sdp_ram.RAMB36E1_inst.ADDRBWRADDR[15:0]}   }
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_zoom -window Wave.1 -factor 2
+gui_close_window -window TopLevel.2
+gui_close_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+set DIALOGS::LOADFILEDIR [file dirname /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl]; gui_load_session -ignore_errors -file /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl
+gui_close_window -window TopLevel.2
+gui_open_db -file /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd -design V1
+set DIALOGS::LOADFILEDIR [file dirname /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl]; gui_load_session -ignore_errors -file /home/rbshi/swin_bram/rtl/sdp_ram/session.vcdplus.vpd.tcl
+gui_wv_zoom_timerange -id  Wave.1 905275 1140158
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_marker_move -id  Wave.1 C1 2195100
+gui_wv_zoom_timerange -id  Wave.1 2051924 2434200
+gui_marker_move -id  Wave.1 C1 2099230
+gui_wv_zoom_timerange -id  Wave.1 2096943 2187008
+gui_list_select -id Wave.1 -selected  { {tb_sdp_ram.rd_addr[8:0]}   }
+gui_marker_move -id  Wave.1 C1 2105000
+gui_marker_move -id  Wave.1 C1 2115000
+gui_wv_scrollleft -id  Wave.1  line
+gui_wv_scrollleft -id  Wave.1  line
+gui_marker_move -id  Wave.1 C1 2105000
+gui_marker_move -id  Wave.1 C1 2115000
+gui_marker_move -id  Wave.1 C1 2095000
+gui_marker_move -id  Wave.1 C1 2105000
+gui_close_window -window TopLevel.2
