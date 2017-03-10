@@ -1,13 +1,14 @@
 # Begin_DVE_Session_Save_Info
 # DVE full session
-# Saved on Fri Mar 10 14:26:36 2017
+# Saved on Thu Mar 9 22:29:22 2017
 # Designs open: 1
 #   V1: /home/rbshi/swin_bram/rtl/sdp_ram/vcdplus.vpd
 # Toplevel windows open: 1
 # 	TopLevel.1
 #   Source.1: glbl
-#   Group count = 1
-#   Group Group1 signal count = 35
+#   Group count = 2
+#   Group Group1 signal count = 8
+#   Group Group2 signal count = 8
 # End_DVE_Session_Save_Info
 
 # DVE version: H-2013.06
@@ -66,7 +67,7 @@ if {![gui_exist_window -window TopLevel.1]} {
 } else { 
     set TopLevel.1 TopLevel.1
 }
-gui_show_window -window ${TopLevel.1} -show_state normal -rect {{2 27} {1917 1050}}
+gui_show_window -window ${TopLevel.1} -show_state maximized -rect {{94 139} {2013 1166}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -107,23 +108,23 @@ gui_hide_toolbar -toolbar {Testbench}
 # End ToolBar settings
 
 # Docked window settings
-set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 288]
+set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 289]
 catch { set Hier.1 [gui_share_window -id ${HSPane.1} -type Hier] }
-gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 288
+gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 289
 gui_set_window_pref_key -window ${HSPane.1} -key dock_height -value_type integer -value -1
 gui_set_window_pref_key -window ${HSPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 287} {height 765} {dock_state left} {dock_on_new_line true} {child_hier_colhier 179} {child_hier_coltype 100} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
-set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 404]
+gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 288} {height 768} {dock_state left} {dock_on_new_line true} {child_hier_colhier 179} {child_hier_coltype 100} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
+set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 405]
 catch { set Data.1 [gui_share_window -id ${DLPane.1} -type Data] }
-gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 404
-gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 768
+gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 405
+gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 561
 gui_set_window_pref_key -window ${DLPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 403} {height 765} {dock_state left} {dock_on_new_line true} {child_data_colvariable 260} {child_data_colvalue 43} {child_data_coltype 92} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
-set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 178]
-gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1860
-gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 178
+gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 404} {height 768} {dock_state left} {dock_on_new_line true} {child_data_colvariable 260} {child_data_colvalue 43} {child_data_coltype 92} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
+set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 179]
+gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1439
+gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 179
 gui_set_window_pref_key -window ${Console.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1915} {height 177} {dock_state bottom} {dock_on_new_line true}}
+gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1919} {height 178} {dock_state bottom} {dock_on_new_line true}}
 #### Start - Readjusting docked view's offset / size
 set dockAreaList { top left right bottom }
 foreach dockArea $dockAreaList {
@@ -173,69 +174,11 @@ gui_set_precision 1ps
 gui_set_time_units 1ps
 #</Database>
 
-# DVE Global setting session: 
-
-
-# Global: Bus
-
-# Global: Expressions
-
-# Global: Signal Time Shift
-
-# Global: Signal Compare
-
-# Global: Signal Groups
-gui_load_child_values {tb_sdp_ram_rdonly.u_sdp_ram}
-gui_load_child_values {tb_sdp_ram_rdonly}
-
-
-set _session_group_1 Group1
-gui_sg_create "$_session_group_1"
-set Group1 "$_session_group_1"
-
-gui_sg_addsignal -group "$_session_group_1" { tb_sdp_ram_rdonly.clk tb_sdp_ram_rdonly.rst_n tb_sdp_ram_rdonly.rd_addr tb_sdp_ram_rdonly.wr_addr tb_sdp_ram_rdonly.wr_data_in tb_sdp_ram_rdonly.wr_data_mask tb_sdp_ram_rdonly.wr_data_en tb_sdp_ram_rdonly.rd_data_out tb_sdp_ram_rdonly.in_file tb_sdp_ram_rdonly.out_file tb_sdp_ram_rdonly.ii tb_sdp_ram_rdonly.jj tb_sdp_ram_rdonly.temp tb_sdp_ram_rdonly.input_data tb_sdp_ram_rdonly.MEM_ADDR_WIDTH tb_sdp_ram_rdonly.MEM_WORD_WIDTH tb_sdp_ram_rdonly.MEM_WR_MASK_WIDTH tb_sdp_ram_rdonly.clk_period tb_sdp_ram_rdonly.start_delay tb_sdp_ram_rdonly.rst_delay tb_sdp_ram_rdonly.rst_period tb_sdp_ram_rdonly.STREAM_LEN tb_sdp_ram_rdonly.MIF_FILE_NAME tb_sdp_ram_rdonly.u_sdp_ram.clk tb_sdp_ram_rdonly.u_sdp_ram.rst_n tb_sdp_ram_rdonly.u_sdp_ram.rd_addr tb_sdp_ram_rdonly.u_sdp_ram.wr_addr tb_sdp_ram_rdonly.u_sdp_ram.wr_data_in tb_sdp_ram_rdonly.u_sdp_ram.wr_data_mask tb_sdp_ram_rdonly.u_sdp_ram.wr_data_en tb_sdp_ram_rdonly.u_sdp_ram.rd_data_out tb_sdp_ram_rdonly.u_sdp_ram.MEM_ADDR_WIDTH tb_sdp_ram_rdonly.u_sdp_ram.MEM_WORD_WIDTH tb_sdp_ram_rdonly.u_sdp_ram.MEM_WR_MASK_WIDTH tb_sdp_ram_rdonly.u_sdp_ram.MIF_FILE }
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.in_file}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.in_file}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.out_file}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.out_file}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.ii}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.ii}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.jj}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.jj}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.temp}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.temp}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.MEM_ADDR_WIDTH}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.MEM_ADDR_WIDTH}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.MEM_WORD_WIDTH}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.MEM_WORD_WIDTH}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.MEM_WR_MASK_WIDTH}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.MEM_WR_MASK_WIDTH}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.clk_period}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.clk_period}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.start_delay}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.start_delay}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.rst_delay}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.rst_delay}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.rst_period}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.rst_period}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.STREAM_LEN}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.STREAM_LEN}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.u_sdp_ram.MEM_ADDR_WIDTH}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.u_sdp_ram.MEM_ADDR_WIDTH}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.u_sdp_ram.MEM_WORD_WIDTH}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.u_sdp_ram.MEM_WORD_WIDTH}
-gui_set_radix -radix {decimal} -signals {V1:tb_sdp_ram_rdonly.u_sdp_ram.MEM_WR_MASK_WIDTH}
-gui_set_radix -radix {twosComplement} -signals {V1:tb_sdp_ram_rdonly.u_sdp_ram.MEM_WR_MASK_WIDTH}
-
-# Global: Highlighting
-
-# Global: Stack
-gui_change_stack_mode -mode list
 
 # Post database loading setting...
 
 # Restore C1 time
-gui_set_time -C1_only 204
+gui_set_time -C1_only 2105000
 
 
 
@@ -260,17 +203,14 @@ gui_list_set_filter -id ${Hier.1} -list { {Package 1} {All 0} {Process 1} {Unnam
 gui_list_set_filter -id ${Hier.1} -text {*}
 gui_hier_list_init -id ${Hier.1}
 gui_change_design -id ${Hier.1} -design V1
-catch {gui_list_expand -id ${Hier.1} tb_sdp_ram_rdonly}
-catch {gui_list_select -id ${Hier.1} {tb_sdp_ram_rdonly.u_sdp_ram}}
+catch {gui_list_select -id ${Hier.1} {glbl}}
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
 
 # Data 'Data.1'
 gui_list_set_filter -id ${Data.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {LowPower 1} {Parameter 1} {All 1} {Aggregate 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Data.1} -text {*}
-gui_list_show_data -id ${Data.1} {tb_sdp_ram_rdonly.u_sdp_ram}
-gui_show_window -window ${Data.1}
-catch { gui_list_select -id ${Data.1} {tb_sdp_ram_rdonly.u_sdp_ram.clk tb_sdp_ram_rdonly.u_sdp_ram.rst_n tb_sdp_ram_rdonly.u_sdp_ram.rd_addr tb_sdp_ram_rdonly.u_sdp_ram.wr_addr tb_sdp_ram_rdonly.u_sdp_ram.wr_data_in tb_sdp_ram_rdonly.u_sdp_ram.wr_data_mask tb_sdp_ram_rdonly.u_sdp_ram.wr_data_en tb_sdp_ram_rdonly.u_sdp_ram.rd_data_out tb_sdp_ram_rdonly.u_sdp_ram.MEM_ADDR_WIDTH tb_sdp_ram_rdonly.u_sdp_ram.MEM_WORD_WIDTH tb_sdp_ram_rdonly.u_sdp_ram.MEM_WR_MASK_WIDTH tb_sdp_ram_rdonly.u_sdp_ram.MIF_FILE }}
+gui_list_show_data -id ${Data.1} {glbl}
 gui_view_scroll -id ${Data.1} -vertical -set 0
 gui_view_scroll -id ${Data.1} -horizontal -set 0
 gui_view_scroll -id ${Hier.1} -vertical -set 0

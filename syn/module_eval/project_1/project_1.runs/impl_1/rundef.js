@@ -27,15 +27,15 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "ngdbuild",
-         "-intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc \"sdp_ram.ucf\" \"sdp_ram.edf\"" );
+         "-intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc \"mux16_w8.ucf\" \"mux16_w8.edf\"" );
 ISEStep( "map",
-         "-intstyle pa -w \"sdp_ram.ngd\"" );
+         "-intstyle pa -w \"mux16_w8.ngd\"" );
 ISEStep( "par",
-         "-intstyle pa \"sdp_ram.ncd\" -w \"sdp_ram_routed.ncd\"" );
+         "-intstyle pa \"mux16_w8.ncd\" -w \"mux16_w8_routed.ncd\"" );
 ISEStep( "trce",
-         "-intstyle ise -o \"sdp_ram.twr\" -v 30 -l 30 \"sdp_ram_routed.ncd\" \"sdp_ram.pcf\"" );
+         "-intstyle ise -o \"mux16_w8.twr\" -v 30 -l 30 \"mux16_w8_routed.ncd\" \"mux16_w8.pcf\"" );
 ISEStep( "xdl",
-         "-secure -ncd2xdl -nopips \"sdp_ram_routed.ncd\" \"sdp_ram_routed.xdl\"" );
+         "-secure -ncd2xdl -nopips \"mux16_w8_routed.ncd\" \"mux16_w8_routed.xdl\"" );
 
 
 

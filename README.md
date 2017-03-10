@@ -32,6 +32,11 @@ The first comparison is to the original video frame buffer scheme.
 ## RTL
 ### sdp_ram
 An implementation of a simple dual port ram with Xilinx Primitive;
+* Resource
+| RAMB36 | FF | Slice | LUT |
+|--------+----+-------+-----|
+|      1 | 0  | 0     | 0   |
+* Pin
 | Input        | BitWidth | Useage               |
 |--------------+----------+----------------------|
 | clk          |        1 | clock                |
@@ -40,5 +45,24 @@ An implementation of a simple dual port ram with Xilinx Primitive;
 | rd_data_out  |       64 | memory read output   |
 | wr_addr      |        9 | memory write address |
 | wr_data_in   |       64 | memory write input   |
-| wr_data_mask |        8 | Byte-wide write mask |
+| wr_data_mask |        8 | byte-wide write mask |
 | wr_data_en   |        1 | memory write enable  |
+* key parameter
+MIF_FILE: Xilinx styled .mif file used to initialize the BRAM
+
+### mux16_w8
+A pixel-wide (8bits) 16 to 1 Multiplexer
+* Resource
+| RAMB36 | FF | Slice | LUT |
+|--------+----+-------+-----|
+|      0 |  0 |     9 |  33 |
+* Pin
+| Input    | BitWidth | Useage               |
+|----------+----------+----------------------|
+| clk      |        1 | clock                |
+| rst_n    |        1 | reset@negedge        |
+| sel      |        4 | select signal of MUX |
+| data_in  |     16*8 | pixel data input     |
+| data_out |        8 | pixel data output    |
+
+###

@@ -27,7 +27,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "xst",
-         "-ifn \"sdp_ram.xst\" -ofn \"sdp_ram.srp\" -intstyle ise" );
+         "-ifn \"mux16_w8.xst\" -ofn \"mux16_w8.srp\" -intstyle ise" );
 
 
 

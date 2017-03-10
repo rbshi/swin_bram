@@ -1,21 +1,21 @@
 
 *** Running ngdbuild
-    with args -intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc sdp_ram.ucf sdp_ram.edf
+    with args -intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc mux16_w8.ucf mux16_w8.edf
 
 
 Command Line: /data/tools/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild
--intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc sdp_ram.ucf sdp_ram.edf
+-intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc mux16_w8.ucf mux16_w8.edf
 
-Executing edif2ngd -quiet "sdp_ram.edf" "_ngo/sdp_ram.ngo"
+Executing edif2ngd -quiet "mux16_w8.edf" "_ngo/mux16_w8.ngo"
 Release 14.7 - edif2ngd P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Reading NGO file
-"/home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/_ngo/sdp_
-ram.ngo" ...
+"/home/rbshi/swin_bram/syn/module_eval/project_1/project_1.runs/impl_1/_ngo/mux1
+6_w8.ngo" ...
 Gathering constraint information from source properties...
 Done.
 
-Annotating constraints to design from ucf file "sdp_ram.ucf" ...
+Annotating constraints to design from ucf file "mux16_w8.ucf" ...
 Resolving constraint associations...
 Checking Constraint Associations...
 Done...
@@ -33,20 +33,20 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Writing NGD file "sdp_ram.ngd" ...
+Writing NGD file "mux16_w8.ngd" ...
 Total REAL time to NGDBUILD completion:  9 sec
 Total CPU time to NGDBUILD completion:   5 sec
 
-Writing NGDBUILD log file "sdp_ram.bld"...
+Writing NGDBUILD log file "mux16_w8.bld"...
 
 NGDBUILD done.
 
 *** Running map
-    with args -intstyle pa -w sdp_ram.ngd
+    with args -intstyle pa -w mux16_w8.ngd
 
 Using target part "7vx690tffg1930-2".
-WARNING:LIT:701 - PAD symbol "rd_data_out[24]" has an undefined IOSTANDARD.
-WARNING:LIT:702 - PAD symbol "rd_data_out[24]" is not constrained (LOC) to a
+WARNING:LIT:701 - PAD symbol "data_in[100]" has an undefined IOSTANDARD.
+WARNING:LIT:702 - PAD symbol "data_in[100]" is not constrained (LOC) to a
    specific location.
 Mapping design into LUTs...
 Running directed packing...
@@ -55,75 +55,93 @@ Updating timing models...
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 37 secs 
+Total REAL time at the beginning of Placer: 38 secs 
 Total CPU  time at the beginning of Placer: 37 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:3116) REAL time: 52 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:5b91) REAL time: 53 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:3116) REAL time: 53 secs 
+Phase 2.7  Design Feasibility Check (Checksum:5b91) REAL time: 54 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:3116) REAL time: 53 secs 
+Phase 3.31  Local Placement Optimization (Checksum:5b91) REAL time: 54 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 ....
 Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:2978fbf7) REAL time: 59 secs 
+(Checksum:dc632e21) REAL time: 57 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:2978fbf7) REAL time: 59 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:dc632e21) REAL time: 57 secs 
 
 Phase 6.3  Local Placement Optimization
 ....
-Phase 6.3  Local Placement Optimization (Checksum:23550bc9) REAL time: 1 mins 3 secs 
+Phase 6.3  Local Placement Optimization (Checksum:d266a46b) REAL time: 1 mins 
 
 Phase 7.5  Local Placement Optimization
-Phase 7.5  Local Placement Optimization (Checksum:23550bc9) REAL time: 1 mins 3 secs 
+Phase 7.5  Local Placement Optimization (Checksum:d266a46b) REAL time: 1 mins 
 
 Phase 8.8  Global Placement
-........................................
-
 ..
-.......................................
-Phase 8.8  Global Placement (Checksum:23550bc9) REAL time: 1 mins 4 secs 
+................
+................
+Phase 8.8  Global Placement (Checksum:d22778d5) REAL time: 1 mins 1 secs 
 
 Phase 9.5  Local Placement Optimization
-Phase 9.5  Local Placement Optimization (Checksum:23550bc9) REAL time: 1 mins 4 secs 
+Phase 9.5  Local Placement Optimization (Checksum:d22778d5) REAL time: 1 mins 1 secs 
 
 Phase 10.18  Placement Optimization
-Phase 10.18  Placement Optimization (Checksum:6e7f0cbe) REAL time: 1 mins 7 secs 
+Phase 10.18  Placement Optimization (Checksum:abc5317e) REAL time: 1 mins 2 secs 
 
 Phase 11.5  Local Placement Optimization
-Phase 11.5  Local Placement Optimization (Checksum:6e7f0cbe) REAL time: 1 mins 7 secs 
+Phase 11.5  Local Placement Optimization (Checksum:abc5317e) REAL time: 1 mins 2 secs 
 
 Phase 12.34  Placement Validation
-Phase 12.34  Placement Validation (Checksum:6e7f0cbe) REAL time: 1 mins 7 secs 
+Phase 12.34  Placement Validation (Checksum:abc5317e) REAL time: 1 mins 2 secs 
 
-Total REAL time to Placer completion: 1 mins 7 secs 
-Total CPU  time to Placer completion: 1 mins 7 secs 
+Total REAL time to Placer completion: 1 mins 2 secs 
+Total CPU  time to Placer completion: 1 mins 1 secs 
 Running post-placement packing...
 Writing output files...
 
 Design Summary:
 Number of errors:      0
-Number of warnings:  159
+Number of warnings:  144
 Slice Logic Utilization:
   Number of Slice Registers:                     0 out of 866,400    0%
-  Number of Slice LUTs:                          0 out of 433,200    0%
+  Number of Slice LUTs:                         33 out of 433,200    1%
+    Number used as logic:                       33 out of 433,200    1%
+      Number using O6 output only:              33
+      Number using O5 output only:               0
+      Number using O5 and O6:                    0
+      Number used as ROM:                        0
+    Number used as Memory:                       0 out of 174,200    0%
+    Number used exclusively as route-thrus:      0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                     0 out of 108,300    0%
-  Number of LUT Flip Flop pairs used:            0
+  Number of occupied Slices:                     9 out of 108,300    1%
+  Number of LUT Flip Flop pairs used:           33
+    Number with an unused Flip Flop:            33 out of      33  100%
+    Number with an unused LUT:                   0 out of      33    0%
+    Number of fully used LUT-FF pairs:           0 out of      33    0%
+    Number of slice register sites lost
+      to control set restrictions:               0 out of 866,400    0%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                       157 out of   1,000   15%
+  Number of bonded IOBs:                       142 out of   1,000   14%
+    IOB Flip Flops:                              8
 
 Specific Feature Utilization:
-  Number of RAMB36E1/FIFO36E1s:                  1 out of   1,470    1%
-    Number using RAMB36E1 only:                  1
-    Number using FIFO36E1 only:                  0
+  Number of RAMB36E1/FIFO36E1s:                  0 out of   1,470    0%
   Number of RAMB18E1/FIFO18E1s:                  0 out of   2,940    0%
   Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
     Number used as BUFGs:                        1
@@ -131,7 +149,10 @@ Specific Feature Utilization:
   Number of IDELAYE2/IDELAYE2_FINEDELAYs:        0 out of   1,000    0%
   Number of ILOGICE2/ILOGICE3/ISERDESE2s:        0 out of   1,000    0%
   Number of ODELAYE2/ODELAYE2_FINEDELAYs:        0 out of   1,000    0%
-  Number of OLOGICE2/OLOGICE3/OSERDESE2s:        0 out of   1,000    0%
+  Number of OLOGICE2/OLOGICE3/OSERDESE2s:        8 out of   1,000    1%
+    Number used as OLOGICE2s:                    8
+    Number used as OLOGICE3s:                    0
+    Number used as OSERDESE2s:                   0
   Number of PHASER_IN/PHASER_IN_PHYs:            0 out of      80    0%
   Number of PHASER_OUT/PHASER_OUT_PHYs:          0 out of      80    0%
   Number of BSCANs:                              0 out of       4    0%
@@ -157,24 +178,24 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of XADCs:                               0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                1.19
+Average Fanout of Non-Clock Nets:                1.55
 
-Peak Memory Usage:  2446 MB
-Total REAL time to MAP completion:  1 mins 9 secs 
-Total CPU time to MAP completion:   1 mins 9 secs 
+Peak Memory Usage:  2463 MB
+Total REAL time to MAP completion:  1 mins 4 secs 
+Total CPU time to MAP completion:   1 mins 3 secs 
 
 Mapping completed.
-See MAP report file "sdp_ram.mrp" for details.
+See MAP report file "mux16_w8.mrp" for details.
 
 *** Running par
-    with args -intstyle pa sdp_ram.ncd -w sdp_ram_routed.ncd
+    with args -intstyle pa mux16_w8.ncd -w mux16_w8_routed.ncd
 
 
 
 
-Constraints file: sdp_ram.pcf.
+Constraints file: mux16_w8.pcf.
 Loading device for application Rf_Device from file '7vx690t.nph' in environment /data/tools/Xilinx/14.7/ISE_DS/ISE/.
-   "sdp_ram" is an NCD, version 3.2, device xc7vx690t, package ffg1930, speed -2
+   "mux16_w8" is an NCD, version 3.2, device xc7vx690t, package ffg1930, speed -2
 
 Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
 Initializing voltage to 0.970 Volts. (default - Range: 0.970 to 1.030 Volts)
@@ -193,19 +214,38 @@ Device Utilization Summary:
 
 Slice Logic Utilization:
   Number of Slice Registers:                     0 out of 866,400    0%
-  Number of Slice LUTs:                          0 out of 433,200    0%
+  Number of Slice LUTs:                         33 out of 433,200    1%
+    Number used as logic:                       33 out of 433,200    1%
+      Number using O6 output only:              33
+      Number using O5 output only:               0
+      Number using O5 and O6:                    0
+      Number used as ROM:                        0
+    Number used as Memory:                       0 out of 174,200    0%
+    Number used exclusively as route-thrus:      0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                     0 out of 108,300    0%
-  Number of LUT Flip Flop pairs used:            0
+  Number of occupied Slices:                     9 out of 108,300    1%
+  Number of LUT Flip Flop pairs used:           33
+    Number with an unused Flip Flop:            33 out of      33  100%
+    Number with an unused LUT:                   0 out of      33    0%
+    Number of fully used LUT-FF pairs:           0 out of      33    0%
+    Number of slice register sites lost
+      to control set restrictions:               0 out of 866,400    0%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                       157 out of   1,000   15%
+  Number of bonded IOBs:                       142 out of   1,000   14%
+    IOB Flip Flops:                              8
 
 Specific Feature Utilization:
-  Number of RAMB36E1/FIFO36E1s:                  1 out of   1,470    1%
-    Number using RAMB36E1 only:                  1
-    Number using FIFO36E1 only:                  0
+  Number of RAMB36E1/FIFO36E1s:                  0 out of   1,470    0%
   Number of RAMB18E1/FIFO18E1s:                  0 out of   2,940    0%
   Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
     Number used as BUFGs:                        1
@@ -213,7 +253,10 @@ Specific Feature Utilization:
   Number of IDELAYE2/IDELAYE2_FINEDELAYs:        0 out of   1,000    0%
   Number of ILOGICE2/ILOGICE3/ISERDESE2s:        0 out of   1,000    0%
   Number of ODELAYE2/ODELAYE2_FINEDELAYs:        0 out of   1,000    0%
-  Number of OLOGICE2/OLOGICE3/OSERDESE2s:        0 out of   1,000    0%
+  Number of OLOGICE2/OLOGICE3/OSERDESE2s:        8 out of   1,000    1%
+    Number used as OLOGICE2s:                    8
+    Number used as OLOGICE3s:                    0
+    Number used as OSERDESE2s:                   0
   Number of PHASER_IN/PHASER_IN_PHYs:            0 out of      80    0%
   Number of PHASER_OUT/PHASER_OUT_PHYs:          0 out of      80    0%
   Number of BSCANs:                              0 out of       4    0%
@@ -249,27 +292,27 @@ Finished initial Timing Analysis.  REAL time: 32 secs
 Starting Router
 
 
-Phase  1  : 239 unrouted;      REAL time: 51 secs 
+Phase  1  : 250 unrouted;      REAL time: 51 secs 
 
-Phase  2  : 200 unrouted;      REAL time: 52 secs 
+Phase  2  : 241 unrouted;      REAL time: 51 secs 
 
-Phase  3  : 90 unrouted;      REAL time: 1 mins 2 secs 
+Phase  3  : 106 unrouted;      REAL time: 52 secs 
 
-Phase  4  : 90 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  4  : 106 unrouted; (Par is working to improve performance)     REAL time: 1 mins 11 secs 
 
-Updating file: sdp_ram_routed.ncd with current fully routed design.
+Updating file: mux16_w8_routed.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 22 secs 
-Total REAL time to Router completion: 1 mins 22 secs 
-Total CPU time to Router completion: 1 mins 22 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 1 mins 12 secs 
+Total REAL time to Router completion: 1 mins 12 secs 
+Total CPU time to Router completion: 1 mins 12 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -298,10 +341,10 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 1 mins 41 secs 
-Total CPU time to PAR completion: 1 mins 41 secs 
+Total REAL time to PAR completion: 1 mins 31 secs 
+Total CPU time to PAR completion: 1 mins 31 secs 
 
-Peak Memory Usage:  1890 MB
+Peak Memory Usage:  1853 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
@@ -310,20 +353,21 @@ Number of error messages: 0
 Number of warning messages: 0
 Number of info messages: 2
 
-Writing design to file sdp_ram_routed.ncd
+Writing design to file mux16_w8_routed.ncd
 
 
 
 PAR done!
 
 *** Running trce
-    with args -intstyle ise -o sdp_ram.twr -v 30 -l 30 sdp_ram_routed.ncd sdp_ram.pcf
+    with args -intstyle ise -o mux16_w8.twr -v 30 -l 30 mux16_w8_routed.ncd mux16_w8.pcf
 
 Loading device for application Rf_Device from file '7vx690t.nph' in environment
 /data/tools/Xilinx/14.7/ISE_DS/ISE/.
-   "sdp_ram" is an NCD, version 3.2, device xc7vx690t, package ffg1930, speed -2
+   "mux16_w8" is an NCD, version 3.2, device xc7vx690t, package ffg1930, speed
+-2
 
-Analysis completed Thu Mar  9 23:02:09 2017
+Analysis completed Fri Mar 10 12:10:53 2017
 --------------------------------------------------------------------------------
 
 Generating Report ...
@@ -332,12 +376,12 @@ Number of warnings: 0
 Total time: 30 secs 
 
 *** Running xdl
-    with args -secure -ncd2xdl -nopips sdp_ram_routed.ncd sdp_ram_routed.xdl
+    with args -secure -ncd2xdl -nopips mux16_w8_routed.ncd mux16_w8_routed.xdl
 
 Release 14.7 - xdl P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 WARNING:XDL:213 - The resulting xdl output will not have LUT equation strings or RAM INIT strings.
 Loading device for application Rf_Device from file '7vx690t.nph' in environment /data/tools/Xilinx/14.7/ISE_DS/ISE/.
-   "sdp_ram" is an NCD, version 3.2, device xc7vx690t, package ffg1930, speed -2
-Successfully converted design 'sdp_ram_routed.ncd' to 'sdp_ram_routed.xdl'.
+   "mux16_w8" is an NCD, version 3.2, device xc7vx690t, package ffg1930, speed -2
+Successfully converted design 'mux16_w8_routed.ncd' to 'mux16_w8_routed.xdl'.

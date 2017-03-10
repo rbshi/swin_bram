@@ -1,41 +1,43 @@
 
 *** Running xst
-    with args -ifn sdp_ram.xst -ofn sdp_ram.srp -intstyle ise
+    with args -ifn mux16_w8.xst -ofn mux16_w8.srp -intstyle ise
 
-Reading design: sdp_ram.prj
+Reading design: mux16_w8.prj
 
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v" into library work
-Parsing module <sdp_ram>.
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/mux16_w8/mux16_w8.v" into library work
+Parsing module <mux16_w8>.
 
 =========================================================================
 *                            HDL Elaboration                            *
 =========================================================================
-WARNING:HDLCompiler:1016 - "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v" Line 40: Port CASCADEOUTA is not connected to this instance
 
-Elaborating module <sdp_ram>.
-
-Elaborating module <RAMB36E1(RDADDR_COLLISION_HWCONFIG="DELAYED_WRITE",SIM_COLLISION_CHECK="ALL",DOA_REG=0,DOB_REG=0,EN_ECC_READ="FALSE",EN_ECC_WRITE="FALSE",INIT_A=36'b0,INIT_B=36'b0,INIT_FILE="NONE",RAM_MODE="SDP",READ_WIDTH_A=72,READ_WIDTH_B=0,WRITE_WIDTH_A=0,WRITE_WIDTH_B=72,SRVAL_A=36'b0,SRVAL_B=36'b0,SIM_DEVICE="7SERIES",WRITE_MODE_A="WRITE_FIRST",WRITE_MODE_B="WRITE_FIRST")>.
+Elaborating module <mux16_w8>.
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
-Synthesizing Unit <sdp_ram>.
-    Related source file is "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v".
-        MEM_ADDR_WIDTH = 9
-        MEM_WORD_WIDTH = 64
-        MEM_WR_MASK_WIDTH = 8
+Synthesizing Unit <mux16_w8>.
+    Related source file is "/home/rbshi/swin_bram/rtl/mux16_w8/mux16_w8.v".
+    Found 8-bit register for signal <data_out>.
+    Found 8-bit 16-to-1 multiplexer for signal <sel[3]_data_in[127]_wide_mux_0_OUT> created at line 35.
     Summary:
-	no macro.
-Unit <sdp_ram> synthesized.
+	inferred   8 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <mux16_w8> synthesized.
 
 =========================================================================
 HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 1
+ 8-bit register                                        : 1
+# Multiplexers                                         : 1
+ 8-bit 16-to-1 multiplexer                             : 1
+
 =========================================================================
 
 =========================================================================
@@ -46,25 +48,33 @@ Found no macro
 =========================================================================
 Advanced HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+# Multiplexers                                         : 1
+ 8-bit 16-to-1 multiplexer                             : 1
+
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
 
-Optimizing unit <sdp_ram> ...
+Optimizing unit <mux16_w8> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block sdp_ram, actual ratio is 0.
+Found area constraint ratio of 100 (+ 0) on block mux16_w8, actual ratio is 0.
 
 Final Macro Processing ...
 
 =========================================================================
 Final Register Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+
 =========================================================================
 
 =========================================================================
@@ -87,7 +97,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 1     |
+clk                                | BUFGP                  | 8     |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -99,8 +109,8 @@ Timing Summary:
 Speed Grade: -2
 
    Minimum period: No path found
-   Minimum input arrival time before clock: 0.882ns
-   Maximum output required time after clock: No path found
+   Minimum input arrival time before clock: 1.092ns
+   Maximum output required time after clock: 0.575ns
    Maximum combinational path delay: No path found
 
 =========================================================================

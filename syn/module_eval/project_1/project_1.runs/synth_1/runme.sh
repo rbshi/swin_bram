@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep xst -ifn "sdp_ram.xst" -ofn "sdp_ram.srp" -intstyle ise
+EAStep xst -ifn "mux16_w8.xst" -ofn "mux16_w8.srp" -intstyle ise

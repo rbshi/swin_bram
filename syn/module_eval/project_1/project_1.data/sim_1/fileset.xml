@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DARoots Version="1" Minor="26">
   <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
+    <Filter Type="Srcs"/>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="sdp_ram"/>
+      <Option Name="TopModule" Val="mux16_w8"/>
       <Option Name="TopLib" Val="work"/>
-      <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/sdp_ram/sdp_ram.v"/>
+      <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/mux16_w8/mux16_w8.v"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
       <Option Name="SrcSet" Val="sources_1"/>
     </Config>

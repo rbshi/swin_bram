@@ -4,10 +4,10 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
-Reading design: sdp_ram.prj
+Reading design: mux16_w8.prj
 
 TABLE OF CONTENTS
   1) Synthesis Options Summary
@@ -35,14 +35,14 @@ TABLE OF CONTENTS
 *                      Synthesis Options Summary                        *
 =========================================================================
 ---- Source Parameters
-Input File Name                    : "sdp_ram.prj"
+Input File Name                    : "mux16_w8.prj"
 
 ---- Target Parameters
 Target Device                      : xc7vx690tffg1930-2
-Output File Name                   : "sdp_ram.ngc"
+Output File Name                   : "mux16_w8.ngc"
 
 ---- Source Options
-Top Module Name                    : sdp_ram
+Top Module Name                    : mux16_w8
 
 ---- General Options
 Optimization Goal                  : speed
@@ -55,35 +55,37 @@ Netlist Hierarchy                  : rebuilt
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v" into library work
-Parsing module <sdp_ram>.
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/mux16_w8/mux16_w8.v" into library work
+Parsing module <mux16_w8>.
 
 =========================================================================
 *                            HDL Elaboration                            *
 =========================================================================
-WARNING:HDLCompiler:1016 - "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v" Line 40: Port CASCADEOUTA is not connected to this instance
 
-Elaborating module <sdp_ram>.
-
-Elaborating module <RAMB36E1(RDADDR_COLLISION_HWCONFIG="DELAYED_WRITE",SIM_COLLISION_CHECK="ALL",DOA_REG=0,DOB_REG=0,EN_ECC_READ="FALSE",EN_ECC_WRITE="FALSE",INIT_A=36'b0,INIT_B=36'b0,INIT_FILE="NONE",RAM_MODE="SDP",READ_WIDTH_A=72,READ_WIDTH_B=0,WRITE_WIDTH_A=0,WRITE_WIDTH_B=72,SRVAL_A=36'b0,SRVAL_B=36'b0,SIM_DEVICE="7SERIES",WRITE_MODE_A="WRITE_FIRST",WRITE_MODE_B="WRITE_FIRST")>.
+Elaborating module <mux16_w8>.
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
-Synthesizing Unit <sdp_ram>.
-    Related source file is "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v".
-        MEM_ADDR_WIDTH = 9
-        MEM_WORD_WIDTH = 64
-        MEM_WR_MASK_WIDTH = 8
+Synthesizing Unit <mux16_w8>.
+    Related source file is "/home/rbshi/swin_bram/rtl/mux16_w8/mux16_w8.v".
+    Found 8-bit register for signal <data_out>.
+    Found 8-bit 16-to-1 multiplexer for signal <sel[3]_data_in[127]_wide_mux_0_OUT> created at line 35.
     Summary:
-	no macro.
-Unit <sdp_ram> synthesized.
+	inferred   8 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <mux16_w8> synthesized.
 
 =========================================================================
 HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 1
+ 8-bit register                                        : 1
+# Multiplexers                                         : 1
+ 8-bit 16-to-1 multiplexer                             : 1
+
 =========================================================================
 
 =========================================================================
@@ -94,25 +96,33 @@ Found no macro
 =========================================================================
 Advanced HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+# Multiplexers                                         : 1
+ 8-bit 16-to-1 multiplexer                             : 1
+
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
 
-Optimizing unit <sdp_ram> ...
+Optimizing unit <mux16_w8> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block sdp_ram, actual ratio is 0.
+Found area constraint ratio of 100 (+ 0) on block mux16_w8, actual ratio is 0.
 
 Final Macro Processing ...
 
 =========================================================================
 Final Register Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+
 =========================================================================
 
 =========================================================================
@@ -130,21 +140,22 @@ Partition Implementation Status
 *                            Design Summary                             *
 =========================================================================
 
-Top Level Output File Name         : sdp_ram.ngc
+Top Level Output File Name         : mux16_w8.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 3
-#      GND                         : 1
+# BELS                             : 57
 #      INV                         : 1
-#      VCC                         : 1
-# RAMS                             : 1
-#      RAMB36E1                    : 1
+#      LUT6                        : 32
+#      MUXF7                       : 16
+#      MUXF8                       : 8
+# FlipFlops/Latches                : 8
+#      FDC                         : 8
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 156
-#      IBUF                        : 92
-#      OBUF                        : 64
+# IO Buffers                       : 141
+#      IBUF                        : 133
+#      OBUF                        : 8
 
 Device utilization summary:
 ---------------------------
@@ -153,23 +164,22 @@ Selected Device : 7vx690tffg1930-2
 
 
 Slice Logic Utilization: 
- Number of Slice LUTs:                    1  out of  433200     0%  
-    Number used as Logic:                 1  out of  433200     0%  
+ Number of Slice LUTs:                   33  out of  433200     0%  
+    Number used as Logic:                33  out of  433200     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:      1
-   Number with an unused Flip Flop:       1  out of      1   100%  
-   Number with an unused LUT:             0  out of      1     0%  
-   Number of fully used LUT-FF pairs:     0  out of      1     0%  
-   Number of unique control sets:         0
+ Number of LUT Flip Flop pairs used:     33
+   Number with an unused Flip Flop:      33  out of     33   100%  
+   Number with an unused LUT:             0  out of     33     0%  
+   Number of fully used LUT-FF pairs:     0  out of     33     0%  
+   Number of unique control sets:         1
 
 IO Utilization: 
- Number of IOs:                         157
- Number of bonded IOBs:                 157  out of   1000    15%  
+ Number of IOs:                         142
+ Number of bonded IOBs:                 142  out of   1000    14%  
+    IOB Flip Flops/Latches:               8
 
 Specific Feature Utilization:
- Number of Block RAM/FIFO:                1  out of   1470     0%  
-    Number using Block RAM only:          1
  Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
 
 ---------------------------
@@ -193,7 +203,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 1     |
+clk                                | BUFGP                  | 8     |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -205,8 +215,8 @@ Timing Summary:
 Speed Grade: -2
 
    Minimum period: No path found
-   Minimum input arrival time before clock: 0.882ns
-   Maximum output required time after clock: No path found
+   Minimum input arrival time before clock: 1.092ns
+   Maximum output required time after clock: 0.575ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -215,22 +225,44 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 64 / 64
+  Total number of paths / destination ports: 224 / 16
 -------------------------------------------------------------------------
-Offset:              0.882ns (Levels of Logic = 1)
-  Source:            wr_data_in<31> (PAD)
-  Destination:       RAMB36E1_inst (RAM)
+Offset:              1.092ns (Levels of Logic = 4)
+  Source:            sel<1> (PAD)
+  Destination:       data_out_0 (FF)
   Destination Clock: clk rising
 
-  Data Path: wr_data_in<31> to RAMB36E1_inst
+  Data Path: sel<1> to data_out_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             1   0.000   0.339  wr_data_in_31_IBUF (wr_data_in_31_IBUF)
-     RAMB36E1:DIADI31          0.543          RAMB36E1_inst
+     IBUF:I->O            32   0.000   0.743  sel_1_IBUF (sel_1_IBUF)
+     LUT6:I0->O            1   0.043   0.000  Mmux_sel[3]_data_in[127]_wide_mux_0_OUT_51 (Mmux_sel[3]_data_in[127]_wide_mux_0_OUT_51)
+     MUXF7:I1->O           1   0.178   0.000  Mmux_sel[3]_data_in[127]_wide_mux_0_OUT_4_f7 (Mmux_sel[3]_data_in[127]_wide_mux_0_OUT_4_f7)
+     MUXF8:I0->O           1   0.128   0.000  Mmux_sel[3]_data_in[127]_wide_mux_0_OUT_2_f8 (sel[3]_data_in[127]_wide_mux_0_OUT<0>)
+     FDC:D                    -0.000          data_out_0
     ----------------------------------------
-    Total                      0.882ns (0.543ns logic, 0.339ns route)
-                                       (61.6% logic, 38.4% route)
+    Total                      1.092ns (0.349ns logic, 0.743ns route)
+                                       (32.0% logic, 68.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Offset:              0.575ns (Levels of Logic = 1)
+  Source:            data_out_7 (FF)
+  Destination:       data_out<7> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: data_out_7 to data_out<7>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              1   0.236   0.339  data_out_7 (data_out_7)
+     OBUF:I->O                 0.000          data_out_7_OBUF (data_out<7>)
+    ----------------------------------------
+    Total                      0.575ns (0.236ns logic, 0.339ns route)
+                                       (41.0% logic, 59.0% route)
 
 =========================================================================
 
@@ -241,14 +273,14 @@ Cross Clock Domains Report:
 
 
 Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.83 secs
+Total CPU time to Xst completion: 6.79 secs
  
 --> 
 
 
-Total memory usage is 591488 kilobytes
+Total memory usage is 599424 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    1 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

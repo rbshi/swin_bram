@@ -1,2 +1,2 @@
-tb_sdp_ram.v
+tb_sdp_ram_rdonly.v
 sdp_ram.v

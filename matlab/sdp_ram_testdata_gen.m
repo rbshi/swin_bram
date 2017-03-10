@@ -10,6 +10,7 @@ fid = fopen('../testdata/input_sdp_ram.txt','w');
 
 for ii = 1:stream_len
     for jj = 1:8
+        % It's used to keep the same demension of the char matrix
         if(stream_data(ii,jj)<16);
             stream_data(ii,jj) = stream_data(ii,jj) + 16;
         end

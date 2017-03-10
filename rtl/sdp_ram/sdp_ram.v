@@ -25,6 +25,7 @@
    parameter MEM_ADDR_WIDTH = 9;
    parameter MEM_WORD_WIDTH = 64;
    parameter MEM_WR_MASK_WIDTH = MEM_WORD_WIDTH/8;
+   parameter MIF_FILE = "NONE";
 
    input wire clk;
    input wire rst_n;
@@ -54,7 +55,7 @@
               .INIT_B(36'h000000000),
 
               // Initialization File: RAM initialization file
-              .INIT_FILE("NONE"),
+              .INIT_FILE(MIF_FILE),
               // RAM Mode: "SDP" or "TDP"
               .RAM_MODE("SDP"),
               // RAM_EXTENSION_A, RAM_EXTENSION_B: Selects cascade mode ("UPPER", "LOWER", or "NONE")
