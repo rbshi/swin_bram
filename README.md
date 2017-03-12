@@ -48,34 +48,49 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
 
 | slot_name   | len(bit) | useage                                                  |
 |-------------+----------+---------------------------------------------------------|
-| S0,mode     |        1 | stands for Mode(Normal / ChangeLine)                    |
-|-------------+----------+---------------------------------------------------------|
-| S1,offset   |        3 | offset in BRAM, the same for the whole                  |
+| S0,offset   |        3 | offset in BRAM, the same for the whole                  |
 |             |          | image line (because input batch size 16                 |
 |             |          | is multiple to BRAM size 8 ),from 0 to 7;               |
 |             |          | Used to do data shuffling and wr_en_mask.               |
 |-------------+----------+---------------------------------------------------------|
-| S2,order    |        2 | indicate which BRAM working fisrt,                      |
-|             |          | with S1, decide the addr_inc and shuffling.             |
+| S1,order    |        3 | indicate which BRAM working fisrt,                      |
+|             |          | with S0, decide the addr_inc and shuffling.             |
 |-------------+----------+---------------------------------------------------------|
-| S3,cycling  |        8 | indicate the cycling times, MAX 255 for 4096 pix/line.  |
+| S2,cycle    |        8 | indicate the cycling times, MAX 255 for 4096 pix/line.  |
 |-------------+----------+---------------------------------------------------------|
-| S4,split    |        4 | ONLY work in S0=1(change line);                         |
-|             |          | indicate #pixel need to be store in the                 |
-|             |          | next Line BRAM.                                         |
-| S5,addr_ret |        1 | Address return to zero, control signal of the outermost |
+| S4,addr_ret |        1 | Address return to zero, control signal of the outermost |
 |             |          | loop.                                                   |
 
 
 ## Hardware Working Timing
 
 ### Decoder
-| data_in_vld     | d0           | d1            | d2            | ... |              |              |                      |                    |               |
-| conf_bram_addr0 |              |               |               | ... | addr++       | addr1        | addr2/0(if return)   |                    |               |
-|                 | conf_data    |               |               | ... |              |              | conf_data_changeline | conf_data_line2    |               |
-|                 |              | ctl_sig       | ctl_sig       | ... |              |              | ctl_sig              | ctl_sig_changeline | ctl_sig_line2 |
-|                 | inline_cnt=0 | inline_cnt=80 | inline_cnt=79 | ... | inline_cnt=3 | inline_cnt=2 | inline_cnt=1         | inline_cnt=0       | inline_cnt=80 |
-|                 |              | set return    |               |     |              |              |                      |                    |               |
+| data_in_vld_d0  | d1              | d2            | d3            | ... |                 |                 |               |
+|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
+| conf_bram_addr0 |                 |               |               | ... | conf_bram_addr1 |                 |               |
+|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
+|                 | conf_data_line0 |               |               | ... |                 | conf_data_line1 |               |
+|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
+|                 | inline_cnt=0    | inline_cnt=79 | inline_cnt=78 | ... | inline_cnt=1    | inline_cnt=0    | inline_cnt=79 |
+|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
+|                 |                 | return setted |               |     |                 |                 | return setted |
+|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
+|                 |                 | ctl_sig_l0_0  |               | ... |                 |                 | ctl_sig_l1_0  |
+|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
+|                 |                 |               | ctl_sig_l0_1  |     |                 |                 |               |
+
+
+
+### BRAM Data Arrangment
+
+| pix23   ...    | ...  | Pix0 |        |
+|----------------+------+------+--------|
+| HSB  RAM2  LSB | RAM1 | RAM0 | group0 |
+|----------------+------+------+--------|
+| HSB  RAM5  LSB | RAM4 | RAM3 | group1 |
+|----------------+------+------+--------|
+| HSB  RAM8  LSB | RAM7 | RAM6 | group2 |
+|----------------+------+------+--------|
 
 
 ## RTL

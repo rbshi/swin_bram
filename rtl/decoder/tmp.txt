@@ -1,0 +1,8 @@
+0: reg_wr_data_maks_0 <= { 8'b0, 16'hFFFF, 0'b0 };
+1: reg_wr_data_maks_0 <= { 7'b0, 16'hFFFF, 1'b0 };
+2: reg_wr_data_maks_0 <= { 6'b0, 16'hFFFF, 2'b0 };
+3: reg_wr_data_maks_0 <= { 5'b0, 16'hFFFF, 3'b0 };
+4: reg_wr_data_maks_0 <= { 4'b0, 16'hFFFF, 4'b0 };
+5: reg_wr_data_maks_0 <= { 3'b0, 16'hFFFF, 5'b0 };
+6: reg_wr_data_maks_0 <= { 2'b0, 16'hFFFF, 6'b0 };
+7: reg_wr_data_maks_0 <= { 1'b0, 16'hFFFF, 7'b0 };
