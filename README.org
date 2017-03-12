@@ -1,41 +1,41 @@
-# swin_bram
+* swin_bram
 A BRAM microstructure for sliding window liked pattern access on Xilinx FPGA
 
-## Features
+** Features
 Differences between this microstructure and the general memory partition approach are listed as the following
 
-### Ultra-fast
+*** Ultra-fast
 Multi-pixeles (**N_in**) input per clock;
 
-### Pixel Aggregation
+*** Pixel Aggregation
 Put several pixeles in one BANK to increase the standalone BRAM ultilization;
 
-### Line Alignment
-**N_x** is #pixel per image line; In the multi-pixels input mode, it may not be interger divided by N<sub>in</sub>; Then each line will have an offset while writing and fetching. The offset chages periodically.
+*** Line Alignment
+*N_x* is #pixel per image line; In the multi-pixels input mode, it may not be interger divided by N<sub>in</sub>; Then each line will have an offset while writing and fetching. The offset chages periodically.
 
-## Project Structure
+** Project Structure
 - matlab: theoritical analysis and test data generation
 - rtl: hardware modules with testbench
 - testdata: testdata used in verification
 - syn: PlanAhead Project folder
 
-## Matlab
-### latency_compare.m
+** Matlab
+*** latency_compare.m
 The first comparison is to the original video frame buffer scheme.
 
-### parameter_gen.m
+*** parameter_gen.m
 Used to generate configuration mif file.
 
-### xilinx_mif_gen.m
+*** xilinx_mif_gen.m
 generate xilinx memory initialization file format.
 
 
 
-## 3x3 sliding window design method
+** 3x3 sliding window design method
 
-**N_bram** per line can be calcuated with ceil(**N_in** / **N_bram_width**)+1, where **N_bram_width** = 8 with the 72x512 SDP RAMB36E1 configuration. Here, we choose that **N_in** is multiple of 8 (16).
+N_bram per line can be calcuated with ceil(N_in / *N_bram_width*)+1, where *N_bram_width* = 8 with the 72x512 SDP RAMB36E1 configuration. Here, we choose that N_in is multiple of 8 (16).
 
-With **N_in** =16, we should set 3x3 BRAM for 3x3 sliding window implementation. BRAM0 -> BRAM8; They all have corresponding control signal as following,
+With N_in =16, we should set 3x3 BRAM for 3x3 sliding window implementation. BRAM0 -> BRAM8; They all have corresponding control signal as following,
 
 - Input: wr_data_en; wr_data_mask; wr_addr; wr_data_in; | rd_addr;
 - Output: rd_data_out;
@@ -44,7 +44,7 @@ The function of control logic is generating standalone signals for these BRAMs.
 
 At first, a configuration BRAM is set to store some parameters calculated offline that can avoid complex calculation logic. The signal slot definition as following,
 
-### Configuration BRAM signal definition
+*** Configuration BRAM signal definition
 
 | slot_name   | len(bit) | useage                                                  |
 |-------------+----------+---------------------------------------------------------|
@@ -62,9 +62,9 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
 |             |          | loop.                                                   |
 
 
-## Hardware Working Timing
+** Hardware Working Timing
 
-### Decoder
+*** Decoder
 | data_in_vld_d0  | d1              | d2            | d3            | ... |                 |                 |               |
 |-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
 | conf_bram_addr0 |                 |               |               | ... | conf_bram_addr1 |                 |               |
@@ -81,7 +81,7 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
 
 
 
-### BRAM Data Arrangment
+*** BRAM Data Arrangment
 
 | pix23   ...    | ...  | Pix0 |        |
 |----------------+------+------+--------|
@@ -93,14 +93,14 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
 |----------------+------+------+--------|
 
 
-## RTL
-### sdp_ram
+** RTL
+*** sdp_ram
 An implementation of a simple dual port ram with Xilinx Primitive;
-* Resource
+**** Resource
   | RAMB36 | FF | Slice | LUT |
   |--------+----+-------+-----|
   |      1 | 0  | 0     | 0   |
-* Pin
+**** Pin
   | Input        | BitWidth | Useage               |
   |--------------+----------+----------------------|
   | clk          |        1 | clock                |
@@ -111,16 +111,16 @@ An implementation of a simple dual port ram with Xilinx Primitive;
   | wr_data_in   |       64 | memory write input   |
   | wr_data_mask |        8 | byte-wide write mask |
   | wr_data_en   |        1 | memory write enable  |
-* key parameter
+**** key parameter
   MIF_FILE: Xilinx styled .mif file used to initialize the BRAM
 
-  ### mux16_w8
+*** mux16_w8
   A pixel-wide (8bits) 16 to 1 Multiplexer
-* Resource
+**** Resource
   | RAMB36 | FF | Slice | LUT |
   |--------+----+-------+-----|
   |      0 |  0 |     9 |  33 |
-* Pin
+**** Pin
   | Input    | BitWidth | Useage               |
   |----------+----------+----------------------|
   | clk      |        1 | clock                |
@@ -128,5 +128,3 @@ An implementation of a simple dual port ram with Xilinx Primitive;
   | sel      |        4 | select signal of MUX |
   | data_in  |     16*8 | pixel data input     |
   | data_out |        8 | pixel data output    |
-
-  ###
