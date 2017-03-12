@@ -1,17 +1,17 @@
 * swin_bram
-A BRAM microstructure for sliding window liked pattern access on Xilinx FPGA
+  A BRAM microstructure for sliding window liked pattern access on Xilinx FPGA
 
 ** Features
-Differences between this microstructure and the general memory partition approach are listed as the following
+   Differences between this microstructure and the general memory partition approach are listed as the following
 
 *** Ultra-fast
-Multi-pixeles (*N_in*) input per clock;
+    Multi-pixeles (*N_in*) input per clock;
 
 *** Pixel Aggregation
-Put several pixeles in one BANK to increase the standalone BRAM ultilization;
+    Put several pixeles in one BANK to increase the standalone BRAM ultilization;
 
 *** Line Alignment
-*N_x* is #pixel per image line; In the multi-pixels input mode, it may not be interger divided by *N_in*; Then each line will have an offset while writing and fetching. The offset chages periodically.
+    *N_x* is #pixel per image line; In the multi-pixels input mode, it may not be interger divided by *N_in*; Then each line will have an offset while writing and fetching. The offset chages periodically.
 
 ** Project Structure
 - matlab: theoritical analysis and test data generation
@@ -21,21 +21,21 @@ Put several pixeles in one BANK to increase the standalone BRAM ultilization;
 
 ** Matlab
 *** latency_compare.m
-The first comparison is to the original video frame buffer scheme.
+    The first comparison is to the original video frame buffer scheme.
 
 *** parameter_gen.m
-Used to generate configuration mif file.
+    Used to generate configuration mif file.
 
 *** xilinx_mif_gen.m
-generate xilinx memory initialization file format.
+    generate xilinx memory initialization file format.
 
 
 
 ** 3x3 sliding window design method
 
-*N_bram* per line can be calcuated with ceil(*N_in* / *N_bram_width*)+1, where *N_bram_width* = 8 with the 72x512 SDP RAMB36E1 configuration. Here, we choose that N_in is multiple of 8 (16).
+   *N_bram* per line can be calcuated with ceil(*N_in* / *N_bram_width*)+1, where *N_bram_width* = 8 with the 72x512 SDP RAMB36E1 configuration. Here, we choose that N_in is multiple of 8 (16).
 
-With N_in =16, we should set 3x3 BRAM for 3x3 sliding window implementation. BRAM0 -> BRAM8; They all have corresponding control signal as following,
+   With *N_in* =16, we should set 3x3 BRAM for 3x3 sliding window implementation. BRAM0 -> BRAM8; They all have corresponding control signal as following,
 
 - Input: wr_data_en; wr_data_mask; wr_addr; wr_data_in; | rd_addr;
 - Output: rd_data_out;
@@ -46,85 +46,90 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
 
 *** Configuration BRAM signal definition
 
-| slot_name   | len(bit) | useage                                                  |
-|-------------+----------+---------------------------------------------------------|
-| S0,offset   |        3 | offset in BRAM, the same for the whole                  |
-|             |          | image line (because input batch size 16                 |
-|             |          | is multiple to BRAM size 8 ),from 0 to 7;               |
-|             |          | Used to do data shuffling and wr_en_mask.               |
-|-------------+----------+---------------------------------------------------------|
-| S1,order    |        3 | indicate which BRAM working fisrt,                      |
-|             |          | with S0, decide the addr_inc and shuffling.             |
-|-------------+----------+---------------------------------------------------------|
-| S2,cycle    |        8 | indicate the cycling times, MAX 255 for 4096 pix/line.  |
-|-------------+----------+---------------------------------------------------------|
-| S4,addr_ret |        1 | Address return to zero, control signal of the outermost |
-|             |          | loop.                                                   |
-
+    | slot_name   | len(bit) | useage                                                    |
+    |-------------+----------+-----------------------------------------------------------|
+    | S0,offset   |        3 | offset in BRAM, the same for the whole                    |
+    |             |          | image line (because input batch size 16                   |
+    |             |          | is multiple to BRAM size 8 ),from 0 to 7;                 |
+    |             |          | Used to do data shuffling and wr_en_mask.                 |
+    |-------------+----------+-----------------------------------------------------------|
+    | S1,order    |        3 | indicate which BRAM working fisrt,                        |
+    |             |          | with S0, decide the addr_inc and shuffling.               |
+    |-------------+----------+-----------------------------------------------------------|
+    | S2,cycle    |        8 | indicate the cycling times, MAX 255 for 4096 pix/line.    |
+    |-------------+----------+-----------------------------------------------------------|
+    | S4,addr_ret |        1 | Address return to zero, control signal of the outermost   |
+    |             |          | loop.                                                     |
+    |-------------+----------+-----------------------------------------------------------|
+    | S5, split   |        4 | indicate #pixel need to be store at the head of next BRAM |
 
 ** Hardware Working Timing
 
 *** Decoder
-| data_in_vld_d0  | d1              | d2            | d3            | ... |                 |                 |               |
-|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
-| conf_bram_addr0 |                 |               |               | ... | conf_bram_addr1 |                 |               |
-|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
-|                 | conf_data_line0 |               |               | ... |                 | conf_data_line1 |               |
-|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
-|                 | inline_cnt=0    | inline_cnt=79 | inline_cnt=78 | ... | inline_cnt=1    | inline_cnt=0    | inline_cnt=79 |
-|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
-|                 |                 | return setted |               |     |                 |                 | return setted |
-|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
-|                 |                 | ctl_sig_l0_0  |               | ... |                 |                 | ctl_sig_l1_0  |
-|-----------------+-----------------+---------------+---------------+-----+-----------------+-----------------+---------------|
-|                 |                 |               | ctl_sig_l0_1  |     |                 |                 |               |
-
-
+    | data_in_vld_d0(1st) | d1              | d2              | d3                 | d4                 | ...             | data_in_vld  | d0(lin1last)    | d1                | d2                   |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    | conf_bram_addr0     |                 |                 |                    | ...                |                 |              | conf_bram_addr1 |                   |                      |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     | conf_data_line0 |                 |                    | ...                |                 |              |                 | conf_data_line1   |                      |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     | inline_cnt=0    | inline_cnt=79   | inline_cnt=78      | ...                |                 | inline_cnt=2 | inline_cnt=1    | inline_cnt=0      | inline_cnt=79        |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 | return setted   |                    |                    |                 |              |                 |                   | return setted        |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 |                 |                    |                    |                 |              |                 |                   |                      |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 | ctl_sig_l0_0    |                    | ...                |                 |              |                 | ctl_sig_l0_0(end) | ctl_sig_l1_0(start)  |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 |                 | ctl_sig_l0_1       |                    |                 |              |                 | ctl_sig_split_0   | ctl_sig_tailappend_0 |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 |                 |                    | group_wr_sig       | group_wr_sig_d0 |              |                 |                   |                      |
+    |                     |                 | group_wr_en     | group_wr_en_d0     | group_wr_en_d1     | group_wr_en_d2  |              |                 |                   |                      |
+    |                     |                 | shuf_flag       | shuf_flag_d0       |                    |                 |              |                 |                   |                      |
+    |                     |                 | wr_data_0,mask0 | wr_data_1,mask1    |                    |                 |              |                 |                   |                      |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 | wr_data_s0      | wr_data_s1         |                    |                 |              |                 |                   |                      |
+    |                     |                 | wr_inc_s0       | wr_inc_s1          |                    |                 |              |                 |                   |                      |
+    |---------------------+-----------------+-----------------+--------------------+--------------------+-----------------+--------------+-----------------+-------------------+----------------------|
+    |                     |                 |                 | shuf_flag_tail     |                    |                 |              |                 |                   |                      |
+    |                     |                 |                 | conf_offset_tail   |                    |                 |              |                 |                   |                      |
+    |                     |                 |                 | wr_data_mask_tail0 | wr_data_mask_tail1 |                 |              |                 |                   |                      |
+    |                     |                 |                 | wr_data_tail0      | wr_data_tail1      |                 |              |                 |                   |                      |
 
 *** BRAM Data Arrangment
 
-| pix23   ...    | ...  | Pix0 |        |
-|----------------+------+------+--------|
-| HSB  RAM2  LSB | RAM1 | RAM0 | group0 |
-|----------------+------+------+--------|
-| HSB  RAM5  LSB | RAM4 | RAM3 | group1 |
-|----------------+------+------+--------|
-| HSB  RAM8  LSB | RAM7 | RAM6 | group2 |
-|----------------+------+------+--------|
+    | pix23   ...    | ...  | Pix0 |        |
+    |----------------+------+------+--------|
+    | HSB  RAM2  LSB | RAM1 | RAM0 | group0 |
+    |----------------+------+------+--------|
+    | HSB  RAM5  LSB | RAM4 | RAM3 | group1 |
+    |----------------+------+------+--------|
+    | HSB  RAM8  LSB | RAM7 | RAM6 | group2 |
+    |----------------+------+------+--------|
+
+*** Line End & Line Start
+    Overlap area will be store in multiple neighboring BRAM groups. Then, ctl_sig will be different while inline_cnt=0 & inline_cnt = MAX;
 
 
 ** RTL
 *** sdp_ram
-An implementation of a simple dual port ram with Xilinx Primitive;
+    An implementation of a simple dual port ram with Xilinx Primitive;
 **** Resource
-  | RAMB36 | FF | Slice | LUT |
-  |--------+----+-------+-----|
-  |      1 | 0  | 0     | 0   |
+     | RAMB36 | FF | Slice | LUT |
+     |--------+----+-------+-----|
+     |      1 | 0  | 0     | 0   |
 **** Pin
-  | Input        | BitWidth | Useage               |
-  |--------------+----------+----------------------|
-  | clk          |        1 | clock                |
-  | rst_n        |        1 | reset@negedge        |
-  | rd_addr      |        9 | memory read address  |
-  | rd_data_out  |       64 | memory read output   |
-  | wr_addr      |        9 | memory write address |
-  | wr_data_in   |       64 | memory write input   |
-  | wr_data_mask |        8 | byte-wide write mask |
-  | wr_data_en   |        1 | memory write enable  |
+     | Input        | BitWidth | Useage               |
+     |--------------+----------+----------------------|
+     | clk          |        1 | clock                |
+     | rst_n        |        1 | reset@negedge        |
+     | rd_addr      |        9 | memory read address  |
+     | rd_data_out  |       64 | memory read output   |
+     | wr_addr      |        9 | memory write address |
+     | wr_data_in   |       64 | memory write input   |
+     | wr_data_mask |        8 | byte-wide write mask |
+     | wr_data_en   |        1 | memory write enable  |
 **** key parameter
-  MIF_FILE: Xilinx styled .mif file used to initialize the BRAM
+     MIF_FILE: Xilinx styled .mif file used to initialize the BRAM
 
-*** mux16_w8
-  A pixel-wide (8bits) 16 to 1 Multiplexer
-**** Resource
-  | RAMB36 | FF | Slice | LUT |
-  |--------+----+-------+-----|
-  |      0 |  0 |     9 |  33 |
-**** Pin
-  | Input    | BitWidth | Useage               |
-  |----------+----------+----------------------|
-  | clk      |        1 | clock                |
-  | rst_n    |        1 | reset@negedge        |
-  | sel      |        4 | select signal of MUX |
-  | data_in  |     16*8 | pixel data input     |
-  | data_out |        8 | pixel data output    |
+*** decoder
+    This module is used to decode the configuration information in the Config BRAM/Distributed RAM and generate control signals for the 3x3 BRAM groups.

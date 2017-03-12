@@ -17,6 +17,6 @@ if __name__ == '__main__':
     print 'Generating...'
 
     for line_num in range(0, length):
-        f_out.write('%d: reg_wr_data_maks_0 <= { %d\'b0, 16\'hFFFF, %d\'b0 };\n' %(line_num, (8-line_num), line_num))
+        f_out.write('%d: reg_wr_data_s0 <= { %d\'b0, pix_data_in_d1[8*16-1:8*%d] };\n' %(line_num, (16-line_num)*8 ,(16-line_num)))
 
     f_out.close()
