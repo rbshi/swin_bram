@@ -185,8 +185,8 @@ module decoder(/*AUTOARG*/
          reg_wr_data_1 <= 0;
       end else begin
          case (shuf_flag)
-           3'b100: reg_wr_data_1 <= {reg_wr_data_0[8*8-1:0], reg_wr_data_0[8*8*3-1:8*8]};
-           3'b010: reg_wr_data_1 <= {reg_wr_data_0[8*8*2-1:0], reg_wr_data_0[8*8*3-1:8*8*2-1]};
+           3'b101: reg_wr_data_1 <= {reg_wr_data_0[8*8-1:0], reg_wr_data_0[8*8*3-1:8*8]};
+           3'b110: reg_wr_data_1 <= {reg_wr_data_0[8*8*2-1:0], reg_wr_data_0[8*8*3-1:8*8*2-1]};
            default: reg_wr_data_1 <= reg_wr_data_0;
          endcase // case (shuf_flag)
       end
@@ -198,8 +198,8 @@ module decoder(/*AUTOARG*/
          reg_wr_data_mask_1 <= 0;
       end else begin
          case (shuf_flag)
-           3'b100: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8-1:0], reg_wr_data_mask_0[8*3-1:8]};
-           3'b010: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8*2-1:0], reg_wr_data_mask_0[8*3-1:8*2-1]};
+           3'b101: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8-1:0], reg_wr_data_mask_0[8*3-1:8]};
+           3'b110: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8*2-1:0], reg_wr_data_mask_0[8*3-1:8*2-1]};
            default: reg_wr_data_mask_1 <= reg_wr_data_mask_0;
          endcase // case (shuf_flag)
       end
@@ -322,7 +322,71 @@ module decoder(/*AUTOARG*/
    // insert the
    wire            flag_write_line_start;
 
-   assign flag_write =
+   assign flag_write = data_in_vld_d[3];
+   assign flag_write_line_end = data_in_vld_d[3] && (inline_cnt_d1==0);
+   // Even d4 corresponds to inline_cnt_d2, but d3 here represents the next batch of input
+   assign flag_write_line_start = data_in_vld_d[3] && (inline_cnt_d2==0);
+
+   // wr_data
+   always @(posedge clk) begin
+      if(flag_write_line_end) begin
+         case(group_wr_en_d0)
+           3'b001: begin
+              wr_data_gp0 <= reg_wr_data_1;
+              wr_data_gp1 <= reg_wr_data_s1;
+
+              wr_data_mask_gp0 <= reg_wr_data_mask_1;
+              wr_data_mask_gp1 <= 24'hFFFFFF;
+
+              wr_data_en_gp0 <= 1;
+              wr_data_en_gp1 <= 1;
+
+              wr_addr_inc_gp0 <= shuf_flag_d0;
+              wr_addr_inc_gp1 <= reg_wr_addr_inc_s1;
+           end
+           3'b010: begin
+              wr_data_gp1 <= reg_wr_data_1;
+              wr_data_gp2 <= reg_wr_data_s1;
+
+              wr_data_mask_gp1 <= reg_wr_data_mask_1;
+              wr_data_mask_gp2 <= 24'hFFFFFF;
+
+              wr_data_en_gp1 <= 1;
+              wr_data_en_gp2 <= 1;
+
+              wr_addr_inc_gp1 <= shuf_flag_d0;
+              wr_addr_inc_gp2 <= reg_wr_addr_inc_s1;
+           end
+           3'b100: begin
+              wr_data_gp2 <= reg_wr_data_1;
+              wr_data_gp0 <= reg_wr_data_s1;
+
+              wr_data_mask_gp2 <= reg_wr_data_mask_1;
+              wr_data_mask_gp0 <= 24'hFFFFFF;
+
+              wr_data_en_gp2 <= 1;
+              wr_data_en_gp0 <= 1;
+
+              wr_addr_inc_gp2 <= shuf_flag_d0;
+              wr_addr_inc_gp0 <= reg_wr_addr_inc_s1;
+
+           end
+         endcase // case (group_wr_en_d0)
+      end else if(flag_write_line_start); // if (flag_write_line_end)
+         case(group_wr_en_d0)
+           3'b001: begin
+              wr_data_gp0 <= reg_wr_data_1;
+              wr_data_gp1 <= reg_wr_data_s1;
+
+              wr_data_mask_gp0 <= reg_wr_data_mask_1;
+              wr_data_mask_gp1 <= 24'hFFFFFF;
+
+              wr_data_en_gp0 <= 1;
+              wr_data_en_gp1 <= 1;
+
+              wr_addr_inc_gp0 <= shuf_flag_d0;
+              wr_addr_inc_gp1 <= reg_wr_addr_inc_s1;
+           end
 
 
 
