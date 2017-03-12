@@ -5,13 +5,13 @@ A BRAM microstructure for sliding window liked pattern access on Xilinx FPGA
 Differences between this microstructure and the general memory partition approach are listed as the following
 
 *** Ultra-fast
-Multi-pixeles (**N_in**) input per clock;
+Multi-pixeles (*N_in*) input per clock;
 
 *** Pixel Aggregation
 Put several pixeles in one BANK to increase the standalone BRAM ultilization;
 
 *** Line Alignment
-*N_x* is #pixel per image line; In the multi-pixels input mode, it may not be interger divided by N<sub>in</sub>; Then each line will have an offset while writing and fetching. The offset chages periodically.
+*N_x* is #pixel per image line; In the multi-pixels input mode, it may not be interger divided by *N_in*; Then each line will have an offset while writing and fetching. The offset chages periodically.
 
 ** Project Structure
 - matlab: theoritical analysis and test data generation
@@ -33,7 +33,7 @@ generate xilinx memory initialization file format.
 
 ** 3x3 sliding window design method
 
-N_bram per line can be calcuated with ceil(N_in / *N_bram_width*)+1, where *N_bram_width* = 8 with the 72x512 SDP RAMB36E1 configuration. Here, we choose that N_in is multiple of 8 (16).
+*N_bram* per line can be calcuated with ceil(*N_in* / *N_bram_width*)+1, where *N_bram_width* = 8 with the 72x512 SDP RAMB36E1 configuration. Here, we choose that N_in is multiple of 8 (16).
 
 With N_in =16, we should set 3x3 BRAM for 3x3 sliding window implementation. BRAM0 -> BRAM8; They all have corresponding control signal as following,
 
