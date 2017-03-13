@@ -5,26 +5,26 @@
 // File          : decoder.v
 // Author        : Runbin Shi
 // Created       : 11.03.2017
-// Last modified : 11.04.2017
+// Last modified : 13.03.2017
 //-----------------------------------------------------------------------------
 // Description : Decoder module for the Configuration BRAM data
 //
 //-----------------------------------------------------------------------------
 // Modification history :
 // 11.03.2017 : created
-// 11.04.2017 : revised with line end and start action
+// 12.03.2017 : revised with line end and start action
 //-----------------------------------------------------------------------------
 
 module decoder(/*AUTOARG*/
-               // Outputs
-               conf_bram_rd_addr, wr_data, wr_data_mask, wr_data_en,
-               // Inputs
-               clk, rst_n, data_in_vld, decoder_en, conf_bram_rd_data_out
-               );
+   // Outputs
+   conf_bram_rd_addr, wr_data, wr_data_mask, wr_data_group_en,
+   wr_addr_inc,
+   // Inputs
+   clk, rst_n, data_in_vld, decoder_en, conf_bram_rd_data_out
+   );
 
    parameter CONF_DATA_WIDTH = 19;
    parameter CONF_ADDR_WIDTH = 9;
-   parameter RAMB36_WIDTH = 72;
 
    input wire clk;
    input wire rst_n;
@@ -36,8 +36,8 @@ module decoder(/*AUTOARG*/
 
    output reg [CONF_ADDR_WIDTH-1:0] conf_bram_rd_addr;
 
-   output wire [8*8*3*3-1:0]          wr_data;
-   output wire [8*3*3-1:0]            wr_data_mask;
+   output wire [8*8*3*3-1:0]        wr_data;
+   output wire [8*3*3-1:0]          wr_data_mask;
    output wire [3-1:0]              wr_data_group_en;
 
    output wire [3*3-1:0]            wr_addr_inc;
@@ -113,7 +113,6 @@ module decoder(/*AUTOARG*/
    reg [2:0]       shuf_flag;
 
    reg [2:0]       group_wr_en;
-   reg [2:0]       group_wr_en_d0;
 
    // group_wr_en
    always @(posedge clk or negedge rst_n) begin
@@ -300,6 +299,12 @@ module decoder(/*AUTOARG*/
    // ----------------------------------------------------------------
    // BRAM Group Control Signal
 
+   // connect the output wire to the intermediate result registers
+   assign wr_data = {wr_data_gp2, wr_data_gp1, wr_data_gp0};
+   assign wr_data_mask = {wr_data_mask_gp2, wr_data_mask_gp1, wr_data_mask_gp0};
+   assign wr_data_group_en = wr_data_en_gp;
+   assign wr_addr_inc = {wr_addr_inc_gp2, wr_addr_inc_gp1, wr_addr_inc_gp0};
+
    reg [8*8*3-1:0] wr_data_gp0;
    reg [8*8*3-1:0] wr_data_gp1;
    reg [8*8*3-1:0] wr_data_gp2;
@@ -308,9 +313,15 @@ module decoder(/*AUTOARG*/
    reg [8*3-1:0]   wr_data_mask_gp1;
    reg [8*3-1:0]   wr_data_mask_gp2;
 
-   reg             wr_data_en_gp0;
-   reg             wr_data_en_gp1;
-   reg             wr_data_en_gp2;
+   reg [3-1:0]     wr_data_en_gp;
+   wire [3-1:0]    wr_data_en_line_end;
+   wire [3-1:0]    wr_data_en_line_start;
+
+   // generate wr_en_mask for wr_data_en_line_end & start;
+   // line_end mask is crol
+   assign wr_data_en_line_end = { group_wr_en_d0[1:0], group_wr_en_d0[2] };
+   // line_start mask is cror
+   assign wr_data_en_line_start = { group_wr_en_d0[0], group_wr_en_d0[2:1] };
 
    reg [3-1:0]     wr_addr_inc_gp0;
    reg [3-1:0]     wr_addr_inc_gp1;
@@ -327,66 +338,129 @@ module decoder(/*AUTOARG*/
    // Even d4 corresponds to inline_cnt_d2, but d3 here represents the next batch of input
    assign flag_write_line_start = data_in_vld_d[3] && (inline_cnt_d2==0);
 
-   // wr_data
+   // wr_data_gpx
+   // connection to wr_data_gpx are totally decided by group_wr_en_d0
    always @(posedge clk) begin
-      if(flag_write_line_end) begin
-         case(group_wr_en_d0)
-           3'b001: begin
-              wr_data_gp0 <= reg_wr_data_1;
-              wr_data_gp1 <= reg_wr_data_s1;
+      case (group_wr_en_d0)
+        3'b001: begin
+           wr_data_gp0 <= reg_wr_data_1;
+           wr_data_gp1 <= reg_wr_data_s1;
+           wr_data_gp2 <= reg_wr_data_tail_1;
+        end
+        3'b010: begin
+           wr_data_gp1 <= reg_wr_data_1;
+           wr_data_gp2 <= reg_wr_data_s1;
+           wr_data_gp0 <= reg_wr_data_tail_1;
+        end
+        3'b100: begin
+           wr_data_gp2 <= reg_wr_data_1;
+           wr_data_gp0 <= reg_wr_data_s1;
+           wr_data_gp1 <= reg_wr_data_tail_1;
+        end
+      endcase // case (group_wr_en_d0)
+   end // always @ (posedge clk)
 
-              wr_data_mask_gp0 <= reg_wr_data_mask_1;
-              wr_data_mask_gp1 <= 24'hFFFFFF;
+   // wr_data_mask_gpx
+   always @(posedge clk) begin
+      case (group_wr_en_d0)
+        3'b001: begin
+           wr_data_mask_gp0 <= reg_wr_data_mask_1;
+           wr_data_mask_gp1 <= 24'hFFFFFF;
+           wr_data_mask_gp2 <= reg_wr_data_mask_tail_1;
+        end
+        3'b010: begin
+           wr_data_mask_gp1 <= reg_wr_data_mask_1;
+           wr_data_mask_gp2 <= 24'hFFFFFF;
+           wr_data_mask_gp0 <= reg_wr_data_mask_tail_1;
+        end
+        3'b100: begin
+           wr_data_mask_gp2 <= reg_wr_data_mask_1;
+           wr_data_mask_gp0 <= 24'hFFFFFF;
+           wr_data_mask_gp1 <= reg_wr_data_mask_tail_1;
+        end
+      endcase // case (group_wr_en_d0)
+   end // always @ (posedge clk)
 
-              wr_data_en_gp0 <= 1;
-              wr_data_en_gp1 <= 1;
+   // wr_data_en_gpx
+   // strict, key controller on BRAM writing
+   always @(posedge clk) begin
+      case({ flag_write, flag_write_line_end, flag_write_line_start })
+        3'b100: wr_data_en_gp <= group_wr_en_d0;
+        3'b110: wr_data_en_gp <= group_wr_en_d0 | wr_data_en_line_end;
+        3'b101: wr_data_en_gp <= group_wr_en_d0 | wr_data_en_line_start;
+        default: wr_data_en_gp <= 3'b000;
+      endcase // case ({ flag_write, flag_write_line_end, flag_write_line_start })
+   end
 
-              wr_addr_inc_gp0 <= shuf_flag_d0;
-              wr_addr_inc_gp1 <= reg_wr_addr_inc_s1;
-           end
-           3'b010: begin
-              wr_data_gp1 <= reg_wr_data_1;
-              wr_data_gp2 <= reg_wr_data_s1;
+   // wr_addr_inc
+   // strict, key controller of BRAM writing address
+   always @(posedge clk) begin
+      // flag_write_line_start situation is the same with normal write, not needed
+      case({ flag_write, flag_write_line_end })
 
-              wr_data_mask_gp1 <= reg_wr_data_mask_1;
-              wr_data_mask_gp2 <= 24'hFFFFFF;
+        2'b10: begin
+           wr_addr_inc_gp0 <= shuf_flag_d0 & {3{group_wr_en_d0[0]}};
+           wr_addr_inc_gp1 <= shuf_flag_d0 & {3{group_wr_en_d0[1]}};
+           wr_addr_inc_gp2 <= shuf_flag_d0 & {3{group_wr_en_d0[2]}};
+        end
 
-              wr_data_en_gp1 <= 1;
-              wr_data_en_gp2 <= 1;
+        2'b11: begin
+           case (group_wr_en_d0)
+             3'b001: begin
+                wr_addr_inc_gp0 <= shuf_flag_d0;
+                // MAX writing will occur in the first 2 BRAM of the next group
+                wr_addr_inc_gp1 <= wr_inc_s1;
+                wr_addr_inc_gp2 <= 3'b000;
+             end
+             3'b010: begin
+                wr_addr_inc_gp1 <= shuf_flag_d0;
+                // MAX writing will occur in the first 2 BRAM of the next group
+                wr_addr_inc_gp2 <= wr_inc_s1;
+                wr_addr_inc_gp0 <= 3'b000;
+             end
+             3'b100: begin
+                wr_addr_inc_gp2 <= shuf_flag_d0;
+                // MAX writing will occur in the first 2 BRAM of the next group
+                wr_addr_inc_gp0 <= wr_inc_s1;
+                wr_addr_inc_gp1 <= 3'b000;
+             end
+             default: begin
+                wr_addr_inc_gp0 <= 3'b000;
+                wr_addr_inc_gp1 <= 3'b000;
+                wr_addr_inc_gp2 <= 3'b000;
+             end
+           endcase // case (group_wr_en_d0)
+        end // case: 3'b110
 
-              wr_addr_inc_gp1 <= shuf_flag_d0;
-              wr_addr_inc_gp2 <= reg_wr_addr_inc_s1;
-           end
-           3'b100: begin
-              wr_data_gp2 <= reg_wr_data_1;
-              wr_data_gp0 <= reg_wr_data_s1;
+        default: begin
+           wr_addr_inc_gp0 <= 3'b000;
+           wr_addr_inc_gp1 <= 3'b000;
+           wr_addr_inc_gp2 <= 3'b000;
+        end
 
-              wr_data_mask_gp2 <= reg_wr_data_mask_1;
-              wr_data_mask_gp0 <= 24'hFFFFFF;
+      endcase // case ({ flag_write, flag_write_line_end })
+   end // always @ (posedge clk)
 
-              wr_data_en_gp2 <= 1;
-              wr_data_en_gp0 <= 1;
 
-              wr_addr_inc_gp2 <= shuf_flag_d0;
-              wr_addr_inc_gp0 <= reg_wr_addr_inc_s1;
+   // ----------------------------------------------------------------
+   // Delay Signal
 
-           end
-         endcase // case (group_wr_en_d0)
-      end else if(flag_write_line_start); // if (flag_write_line_end)
-         case(group_wr_en_d0)
-           3'b001: begin
-              wr_data_gp0 <= reg_wr_data_1;
-              wr_data_gp1 <= reg_wr_data_s1;
+   integer ii;
 
-              wr_data_mask_gp0 <= reg_wr_data_mask_1;
-              wr_data_mask_gp1 <= 24'hFFFFFF;
+   // data_in_vld
+   reg [4-1:0] data_in_vld_d;
+   always @(posedge clk) begin
+      data_in_vld_d[0] <= data_in_vld;
+      for(ii=1;ii<4;ii=ii+1) begin
+         data_in_vld_d[ii] <= data_in_vld_d[ii-1];
+      end
+   end
 
-              wr_data_en_gp0 <= 1;
-              wr_data_en_gp1 <= 1;
+   //
+   reg [2:0]       group_wr_en_d0;
 
-              wr_addr_inc_gp0 <= shuf_flag_d0;
-              wr_addr_inc_gp1 <= reg_wr_addr_inc_s1;
-           end
+
+
 
 
 
