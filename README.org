@@ -118,18 +118,36 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
      |--------+----+-------+-----|
      |      1 | 0  | 0     | 0   |
 **** Pin
-     | Input        | BitWidth | Useage               |
-     |--------------+----------+----------------------|
-     | clk          |        1 | clock                |
-     | rst_n        |        1 | reset@negedge        |
-     | rd_addr      |        9 | memory read address  |
-     | rd_data_out  |       64 | memory read output   |
-     | wr_addr      |        9 | memory write address |
-     | wr_data_in   |       64 | memory write input   |
-     | wr_data_mask |        8 | byte-wide write mask |
-     | wr_data_en   |        1 | memory write enable  |
+     | Name         | Dir | BitWidth | Useage               |
+     |--------------+-----+----------+----------------------|
+     | clk          | I   |        1 | clock                |
+     | rst_n        | I   |        1 | reset@negedge        |
+     | rd_addr      | I   |        9 | memory read address  |
+     | rd_data_out  | O   |       64 | memory read output   |
+     | wr_addr      | I   |        9 | memory write address |
+     | wr_data_in   | I   |       64 | memory write input   |
+     | wr_data_mask | I   |        8 | byte-wide write mask |
+     | wr_data_en   | I   |        1 | memory write enable  |
 **** key parameter
      MIF_FILE: Xilinx styled .mif file used to initialize the BRAM
 
 *** decoder
     This module is used to decode the configuration information in the Config BRAM/Distributed RAM and generate control signals for the 3x3 BRAM groups.
+**** Resource
+
+**** Pin
+     | Name                  | Dir |             BitWidth | Useage                                |
+     |-----------------------+-----+----------------------+---------------------------------------|
+     | clk                   | I   |                    1 | clock                                 |
+     | rst_n                 | I   |                    1 | reset@negedge                         |
+     | data_in_vld           | I   |                    1 | vld sig of data input                 |
+     | pix_data_in           | I   |                  128 | pixel data input                      |
+     | conf_bram_rd_data_out | I   |      CONF_DATA_WIDTH | data read out from config RAM         |
+     | conf_bram_rd_addr     | O   | CONF_BRAM_ADDR_WIDTH | read address to conf bram             |
+     | wr_data               | O   |                192*3 | write data to 3 BRAM groups           |
+     | wr_data_mask          | O   |                 24*3 | write data mask                       |
+     | wr_data_group_en      | O   |                    3 | 3 BRAM groups write enable            |
+     | wr_addr_inc           | O   |                    9 | address increase sig for each BRAM    |
+     | wr_addr_reset         | O   |                    3 | address reset sig for each BRAM group |
+
+**** bram_group
