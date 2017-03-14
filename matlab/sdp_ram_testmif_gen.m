@@ -23,12 +23,11 @@ hex_mat = [];
 for ii = 1:stream_len
     hex_str = [];
     for jj = 1:8
-        hex_str = strcat(hex_str,dec2hex(stream_data(ii,jj)));
+        hex_str = strcat(hex_str,dec2hex(stream_data(ii,jj),2));
     end
     hex_mat = [hex_mat; hex_str];
 end
 
-% Temp part of mif_gen
 mif_file_name = '../testdata/ram_init.mif'
 
 xilinx_mif_gen(mif_file_name, hex_mat, 64);

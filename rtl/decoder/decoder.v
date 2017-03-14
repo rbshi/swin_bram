@@ -34,7 +34,7 @@ module decoder(/*AUTOARG*/
    // connected to the pix_data_in
    input wire [16*8-1:0] pix_data_in;
 
-   input wire [CONF_ADDR_WIDTH-1:0] conf_bram_rd_data_out;
+   input wire [CONF_DATA_WIDTH-1:0] conf_bram_rd_data_out;
 
    output reg [CONF_ADDR_WIDTH-1:0] conf_bram_rd_addr;
 
@@ -84,7 +84,7 @@ module decoder(/*AUTOARG*/
    reg [3-1:0]       shuf_flag_d0;
 
    always @(posedge clk) begin
-      shuf_flag <= shuf_flag_d0;
+      shuf_flag_d0 <= shuf_flag;
    end
 
    // pix_data_in
@@ -164,17 +164,16 @@ module decoder(/*AUTOARG*/
    reg [8*8*3-1:0] reg_wr_data_1;
    reg [8*3-1:0]   reg_wr_data_mask_0;
    reg [8*3-1:0]   reg_wr_data_mask_1;
-   reg [9-1:0]     reg_wr_data_en_0;
-   reg [9-1:0]     reg_wr_data_en_1;
+   //   reg [9-1:0]     reg_wr_data_en_0;
+   //   reg [9-1:0]     reg_wr_data_en_1;
 
    // group_wr_en
    always @(posedge clk or negedge rst_n) begin
       if(!rst_n) begin
-         group_wr_en <= 3'b010;
+         group_wr_en <= 3'b100;
       end else begin
          if(data_in_vld_d[1] && inline_cnt==0)
-           group_wr_en <= {group_wr_en[0], group_wr_en[2:1]};
-         group_wr_en_d0 = group_wr_en;
+           group_wr_en <= {group_wr_en[1:0], group_wr_en[2]};
       end
    end
 
@@ -207,7 +206,7 @@ module decoder(/*AUTOARG*/
            5: reg_wr_data_0 <= { 24'b0, pix_data_in_d1, 40'b0 };
            6: reg_wr_data_0 <= { 16'b0, pix_data_in_d1, 48'b0 };
            7: reg_wr_data_0 <= { 8'b0, pix_data_in_d1, 56'b0 };
-           default: reg_wr_data_0 <= { 64'b0, pix_data_in_d1, 0'b0 };
+           default: reg_wr_data_0 <= { 64'b0, pix_data_in_d1};
          endcase // case (conf_offset)
       end // else: !if(!rst_n)
    end // always @ (posedge clk or negedge rst_n)
@@ -218,7 +217,7 @@ module decoder(/*AUTOARG*/
          reg_wr_data_mask_0 <= 0;
       end else begin
          case (conf_offset)
-           0: reg_wr_data_mask_0 <= { 8'b0, 16'hFFFF, 0'b0 };
+           0: reg_wr_data_mask_0 <= { 8'b0, 16'hFFFF };
            1: reg_wr_data_mask_0 <= { 7'b0, 16'hFFFF, 1'b0 };
            2: reg_wr_data_mask_0 <= { 6'b0, 16'hFFFF, 2'b0 };
            3: reg_wr_data_mask_0 <= { 5'b0, 16'hFFFF, 3'b0 };
@@ -238,7 +237,7 @@ module decoder(/*AUTOARG*/
       end else begin
          case (shuf_flag)
            3'b101: reg_wr_data_1 <= {reg_wr_data_0[8*8-1:0], reg_wr_data_0[8*8*3-1:8*8]};
-           3'b110: reg_wr_data_1 <= {reg_wr_data_0[8*8*2-1:0], reg_wr_data_0[8*8*3-1:8*8*2-1]};
+           3'b110: reg_wr_data_1 <= {reg_wr_data_0[8*8*2-1:0], reg_wr_data_0[8*8*3-1:8*8*2]};
            default: reg_wr_data_1 <= reg_wr_data_0;
          endcase // case (shuf_flag)
       end
@@ -251,7 +250,7 @@ module decoder(/*AUTOARG*/
       end else begin
          case (shuf_flag)
            3'b101: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8-1:0], reg_wr_data_mask_0[8*3-1:8]};
-           3'b110: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8*2-1:0], reg_wr_data_mask_0[8*3-1:8*2-1]};
+           3'b110: reg_wr_data_mask_1 <= {reg_wr_data_mask_0[8*2-1:0], reg_wr_data_mask_0[8*3-1:8*2]};
            default: reg_wr_data_mask_1 <= reg_wr_data_mask_0;
          endcase // case (shuf_flag)
       end
@@ -327,7 +326,7 @@ module decoder(/*AUTOARG*/
         5: reg_wr_data_tail_0 <= { 24'b0, pix_data_in_d1, 40'b0 };
         6: reg_wr_data_tail_0 <= { 16'b0, pix_data_in_d1, 48'b0 };
         7: reg_wr_data_tail_0 <= { 8'b0, pix_data_in_d1, 56'b0 };
-        default: reg_wr_data_0 <= { 64'b0, pix_data_in_d1, 0'b0 };
+        default: reg_wr_data_tail_0 <= { 64'b0, pix_data_in_d1 };
       endcase // case (reg_conf_offset_tail)
    end // always @ (posedge clk)
 
@@ -335,7 +334,7 @@ module decoder(/*AUTOARG*/
    always @(posedge clk) begin
       case (reg_shuf_flag_tail)
         3'b100: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8-1:0], reg_wr_data_tail_0[8*8*3-1:8*8]};
-        3'b010: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8*2-1:0], reg_wr_data_tail_0[8*8*3-1:8*8*2-1]};
+        3'b010: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8*2-1:0], reg_wr_data_tail_0[8*8*3-1:8*8*2]};
         default: reg_wr_data_tail_1 <= reg_wr_data_tail_0;
       endcase // case (reg_shuf_flag_tail)
    end
@@ -344,7 +343,7 @@ module decoder(/*AUTOARG*/
    always @(posedge clk) begin
       case (reg_shuf_flag_tail)
         3'b100: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8-1:0], reg_wr_data_mask_tail_0[8*3-1:8]};
-        3'b010: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8*2-1:0], reg_wr_data_mask_tail_0[8*3-1:8*2-1]};
+        3'b010: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8*2-1:0], reg_wr_data_mask_tail_0[8*3-1:8*2]};
         default: reg_wr_data_mask_tail_1 <= reg_wr_data_mask_tail_0;
       endcase // case (reg_shuf_flag_tail)
    end
@@ -391,10 +390,10 @@ module decoder(/*AUTOARG*/
    // insert the
    wire            flag_write_line_start;
 
-   assign flag_write = data_in_vld_d[3];
-   assign flag_write_line_end = data_in_vld_d[3] && (inline_cnt_d1==0);
+   assign flag_write = data_in_vld_d[2];
+   assign flag_write_line_end = data_in_vld_d[2] && (inline_cnt_d0==0);
    // Even d4 corresponds to inline_cnt_d2, but d3 here represents the next batch of input
-   assign flag_write_line_start = data_in_vld_d[3] && (inline_cnt_d2==0);
+   assign flag_write_line_start = data_in_vld_d[2] && (inline_cnt_d1==0);
 
    // wr_data_gpx
    // connection to wr_data_gpx are totally decided by group_wr_en_d0

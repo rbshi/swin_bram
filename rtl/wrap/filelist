@@ -1,0 +1,6 @@
+tb_swin_wrap.v
+swin_wrap.v
+../sdp_ram/sdp_ram.v
+../decoder/decoder.v
+../dbram/dbram.v
+../bram_group/bram_group.v

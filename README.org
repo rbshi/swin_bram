@@ -63,6 +63,9 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
     |-------------+----------+-----------------------------------------------------------|
     | S5, split   |        4 | indicate #pixel need to be store at the head of next BRAM |
 
+
+
+
 ** Hardware Working Timing
 
 *** Decoder
