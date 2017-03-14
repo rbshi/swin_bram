@@ -18,9 +18,11 @@
 module decoder(/*AUTOARG*/
    // Outputs
    conf_bram_rd_addr, wr_data, wr_data_mask, wr_data_group_en,
-   wr_addr_inc, wr_addr_reset,
+   wr_addr_inc, wr_addr_reset, rd_addr_sel, data_out_line_0,
+   data_out_line_1, data_out_line_2, data_out_vld,
    // Inputs
-   clk, rst_n, data_in_vld, pix_data_in, conf_bram_rd_data_out
+   clk, rst_n, data_in_vld, pix_data_in, conf_bram_rd_data_out,
+   rd_data_out_gp0, rd_data_out_gp1, rd_data_out_gp2
    );
 
    parameter CONF_DATA_WIDTH = 19;
@@ -45,16 +47,36 @@ module decoder(/*AUTOARG*/
    output wire [3*3-1:0]            wr_addr_inc;
    output wire [3-1:0]              wr_addr_reset;
 
+   // rd_data_related
+   input wire [8*8*3-1:0]                 rd_data_out_gp0;
+   input wire [8*8*3-1:0]                 rd_data_out_gp1;
+   input wire [8*8*3-1:0]                 rd_data_out_gp2;
+
+   output wire [3-1:0]                    rd_addr_sel;
+
+   output reg [8*16-1:0]                 data_out_line_0;
+   output reg [8*16-1:0]                 data_out_line_1;
+   output reg [8*16-1:0]                 data_out_line_2;
+
+   output wire                            data_out_vld;
+
+   wire [CONF_DATA_WIDTH-1:0]       conf_data;
+   wire [3-1:0]                     conf_offset;
+   wire [3-1:0]                     conf_order;
+   wire [8-1:0]                     conf_cycle;
+   wire [1-1:0]                     conf_addr_ret;
+   wire [4-1:0]                     conf_split;
+
    // ----------------------------------------------------------------
    // Delay Signal
 
    integer ii;
 
    // data_in_vld
-   reg [4-1:0] data_in_vld_d;
+   reg [9-1:0] data_in_vld_d;
    always @(posedge clk) begin
       data_in_vld_d[0] <= data_in_vld;
-      for(ii=1;ii<4;ii=ii+1) begin
+      for(ii=1;ii<9;ii=ii+1) begin
          data_in_vld_d[ii] <= data_in_vld_d[ii-1];
       end
    end
@@ -63,8 +85,16 @@ module decoder(/*AUTOARG*/
    reg [3-1:0] group_wr_en;
 
    reg [3-1:0]       group_wr_en_d0;
+   reg [3-1:0]       group_wr_en_d1;
+   reg [3-1:0]       group_wr_en_d2;
+   reg [3-1:0]       group_wr_en_d3;
+   reg [3-1:0]       group_wr_en_d4;
    always @(posedge clk) begin
       group_wr_en_d0 <= group_wr_en;
+      group_wr_en_d1 <= group_wr_en_d0;
+      group_wr_en_d2 <= group_wr_en_d1;
+      group_wr_en_d3 <= group_wr_en_d2;
+      group_wr_en_d4 <= group_wr_en_d3;
    end
 
    // inline_cnt
@@ -82,28 +112,53 @@ module decoder(/*AUTOARG*/
    // shuf_flag
    reg [3-1:0]       shuf_flag;
    reg [3-1:0]       shuf_flag_d0;
+   reg [3-1:0]       shuf_flag_d1;
+   reg [3-1:0]       shuf_flag_d2;
 
    always @(posedge clk) begin
       shuf_flag_d0 <= shuf_flag;
+      shuf_flag_d1 <= shuf_flag_d0;
+      shuf_flag_d2 <= shuf_flag_d1;
+   end
+
+   // offset
+   reg [3-1:0] offset_d0;
+   reg [3-1:0] offset_d1;
+   reg [3-1:0] offset_d2;
+   reg [3-1:0] offset_d3;
+   reg [3-1:0] offset_d4;
+
+   always @(posedge clk) begin
+      offset_d0 <= conf_offset;
+      offset_d1 <= offset_d0;
+      offset_d2 <= offset_d1;
+      offset_d3 <= offset_d2;
+      offset_d4 <= offset_d3;
    end
 
    // pix_data_in
    reg [16*8-1:0] pix_data_in_d0;
    reg [16*8-1:0] pix_data_in_d1;
+   reg [16*8-1:0] pix_data_in_d2;
+   reg [16*8-1:0] pix_data_in_d3;
+   reg [16*8-1:0] pix_data_in_d4;
+   reg [16*8-1:0] pix_data_in_d5;
+   reg [16*8-1:0] pix_data_in_d6;
+   reg [16*8-1:0] pix_data_in_d7;
 
    always @(posedge clk) begin
       pix_data_in_d0 <= pix_data_in;
       pix_data_in_d1 <= pix_data_in_d0;
+      pix_data_in_d2 <= pix_data_in_d1;
+      pix_data_in_d3 <= pix_data_in_d2;
+      pix_data_in_d4 <= pix_data_in_d3;
+      pix_data_in_d5 <= pix_data_in_d4;
+      pix_data_in_d6 <= pix_data_in_d5;
+      pix_data_in_d7 <= pix_data_in_d6;
    end
 
    // ----------------------------------------------------------------
    // config_data_wire
-   wire [CONF_DATA_WIDTH-1:0]       conf_data;
-   wire [3-1:0]                     conf_offset;
-   wire [3-1:0]                     conf_order;
-   wire [8-1:0]                     conf_cycle;
-   wire [1-1:0]                     conf_addr_ret;
-   wire [4-1:0]                     conf_split;
 
    assign conf_data = conf_bram_rd_data_out;
 
@@ -516,5 +571,103 @@ module decoder(/*AUTOARG*/
            reg_wr_addr_reset <= 3'b000;
       end // else: !if(!rst_n)
    end // always @ (posedge clk or negedge rst_n)
+
+
+   // rd_data_related
+   // rd_addr_sel is the same with group_wr_en and output at the same clock with
+   // wr_data_group_en
+   assign rd_addr_sel = group_wr_en_d1;
+
+   // out stage 0
+   reg [8*8*3-1:0] rd_data_deshuf_gp0;
+   reg [8*8*3-1:0] rd_data_deshuf_gp1;
+   reg [8*8*3-1:0] rd_data_deshuf_gp2;
+
+   always @(posedge clk) begin
+      // don't care about data vld, just intermediate result
+      case (shuf_flag_d2)
+        3'b011: begin
+           rd_data_deshuf_gp0 <= rd_data_out_gp0;
+           rd_data_deshuf_gp1 <= rd_data_out_gp1;
+           rd_data_deshuf_gp2 <= rd_data_out_gp2;
+        end
+        3'b110: begin
+           rd_data_deshuf_gp0 <= {rd_data_out_gp0[8*8*1-1:8*8*0],rd_data_out_gp0[8*8*3-1:8*8*1]};
+           rd_data_deshuf_gp1 <= {rd_data_out_gp1[8*8*1-1:8*8*0],rd_data_out_gp1[8*8*3-1:8*8*1]};
+           rd_data_deshuf_gp2 <= {rd_data_out_gp2[8*8*1-1:8*8*0],rd_data_out_gp2[8*8*3-1:8*8*1]};
+        end
+        3'b101: begin
+           rd_data_deshuf_gp0 <= {rd_data_out_gp0[8*8*2-1:8*8*0],rd_data_out_gp0[8*8*3-1:8*8*2]};
+           rd_data_deshuf_gp1 <= {rd_data_out_gp1[8*8*2-1:8*8*0],rd_data_out_gp1[8*8*3-1:8*8*2]};
+           rd_data_deshuf_gp2 <= {rd_data_out_gp2[8*8*2-1:8*8*0],rd_data_out_gp2[8*8*3-1:8*8*2]};
+        end
+      endcase // case (shuf_flag_d2)
+   end // always @ (posedge clk)
+
+   // out stage 1
+   reg [8*8*2-1:0] rd_data_deoffset_gp0;
+   reg [8*8*2-1:0] rd_data_deoffset_gp1;
+   reg [8*8*2-1:0] rd_data_deoffset_gp2;
+
+   always @(posedge clk) begin
+      case (offset_d4)
+        0: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*16-1-:8*16];
+        1: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*17-1-:8*16];
+        2: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*18-1-:8*16];
+        3: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*19-1-:8*16];
+        4: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*20-1-:8*16];
+        5: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*21-1-:8*16];
+        6: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*22-1-:8*16];
+        7: rd_data_deoffset_gp0 <= rd_data_deshuf_gp0[8*23-1-:8*16];
+      endcase // case (offset_d4)
+   end // always @ (posedge clk)
+   always @(posedge clk) begin
+      case (offset_d4)
+        0: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*16-1-:8*16];
+        1: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*17-1-:8*16];
+        2: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*18-1-:8*16];
+        3: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*19-1-:8*16];
+        4: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*20-1-:8*16];
+        5: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*21-1-:8*16];
+        6: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*22-1-:8*16];
+        7: rd_data_deoffset_gp1 <= rd_data_deshuf_gp1[8*23-1-:8*16];
+      endcase // case (offset_d4)
+   end // always @ (posedge clk)
+   always @(posedge clk) begin
+      case (offset_d4)
+        0: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*16-1-:8*16];
+        1: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*17-1-:8*16];
+        2: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*18-1-:8*16];
+        3: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*19-1-:8*16];
+        4: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*20-1-:8*16];
+        5: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*21-1-:8*16];
+        6: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*22-1-:8*16];
+        7: rd_data_deoffset_gp2 <= rd_data_deshuf_gp2[8*23-1-:8*16];
+      endcase // case (offset_d4)
+   end // always @ (posedge clk)
+
+   // out stage 2
+   always @(posedge clk) begin
+      case(group_wr_en_d4)
+        3'b001: begin
+           data_out_line_0 <= rd_data_deoffset_gp1;
+           data_out_line_1 <= rd_data_deoffset_gp2;
+           data_out_line_2 <= pix_data_in_d7;
+        end
+        3'b010: begin
+           data_out_line_0 <= rd_data_deoffset_gp2;
+           data_out_line_1 <= rd_data_deoffset_gp0;
+           data_out_line_2 <= pix_data_in_d7;
+        end
+        3'b100: begin
+           data_out_line_0 <= rd_data_deoffset_gp0;
+           data_out_line_1 <= rd_data_deoffset_gp1;
+           data_out_line_2 <= pix_data_in_d7;
+        end
+      endcase // case (group_wr_en_d4)
+   end // always @ (posedge clk)
+
+   // data_out_vld
+   assign data_out_vld = data_in_vld_d[8];
 
 endmodule // decoder

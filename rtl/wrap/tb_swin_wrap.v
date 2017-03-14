@@ -38,16 +38,19 @@ module tb_swin_wrap();
    reg rst_n;
 
    reg [16*8-1:0] pix_data_in;
-   reg              data_in_vld;
+   reg            data_in_vld;
 
-   wire [16*8*3-1:0] pix_data_out;
-   wire              data_out_vld;
+   wire [8*16-1:0] data_out_line_0;
+   wire [8*16-1:0] data_out_line_1;
+   wire [8*16-1:0] data_out_line_2;
+
+   wire            data_out_vld;
 
 
    // Variables for Simulation
-   integer                     in_file, out_file;
-   integer                     ii, jj;
-   integer                     temp;
+   integer         in_file, out_file;
+   integer         ii, jj;
+   integer         temp;
 
 
    // clk generate
@@ -75,7 +78,9 @@ module tb_swin_wrap();
    // Open file
    initial begin
       in_file = $fopen("../../testdata/input_swin.txt", "r");
-      out_file = $fopen("../../testdata/output_swin.txt", "w");
+      line0_out_file = $fopen("../../testdata/output_line0.txt", "w");
+      line1_out_file = $fopen("../../testdata/output_line1.txt", "w");
+      line2_out_file = $fopen("../../testdata/output_line2.txt", "w");
    end
 
    initial begin
@@ -102,27 +107,40 @@ module tb_swin_wrap();
       data_in_vld <= 0;
 
       #(clk_period*10);
-/* -----\/----- EXCLUDED -----\/-----
+      /* -----\/----- EXCLUDED -----\/-----
 
-      // Begin read from BRAM
-      for (jj=0;jj<STREAM_LEN;jj=jj+1) begin
-         @(posedge clk);
-         rd_addr <= rd_addr + 1;
-         if(jj>1) begin
-            $fdisplay(out_file, "%x", rd_data_out);
+       // Begin read from BRAM
+       for (jj=0;jj<STREAM_LEN;jj=jj+1) begin
+       @(posedge clk);
+       rd_addr <= rd_addr + 1;
+       if(jj>1) begin
+       $fdisplay(out_file, "%x", rd_data_out);
          end
       end
 
-      @(posedge clk);
-      $fdisplay(out_file, "%x", rd_data_out);
-      @(posedge clk);
-      $fdisplay(out_file, "%x", rd_data_out);
- -----/\----- EXCLUDED -----/\----- */
+       @(posedge clk);
+       $fdisplay(out_file, "%x", rd_data_out);
+       @(posedge clk);
+       $fdisplay(out_file, "%x", rd_data_out);
+       -----/\----- EXCLUDED -----/\----- */
 
       #(clk_period*10);
       $finish;
 
+      $fclose(line0_out_file);
+      $fclose(line1_out_file);
+      $fclose(line2_out_file);
+
    end // initial begin
+
+   // Dump file
+   always @(posedge clk) begin
+      if(data_out_vld) begin
+         $fdisplay(line0_out_file, "%x", data_out_line_0);
+         $fdisplay(line1_out_file, "%x", data_out_line_1);
+         $fdisplay(line2_out_file, "%x", data_out_line_2);
+      end
+   end
 
    // DUT instantition
 
@@ -131,7 +149,9 @@ module tb_swin_wrap();
                          .rst_n(rst_n),
                          .pix_data_in(pix_data_in),
                          .data_in_vld(data_in_vld),
-                         .pix_data_out(pix_data_out),
+                         .data_out_line_0(data_out_line_0),
+                         .data_out_line_1(data_out_line_1),
+                         .data_out_line_2(data_out_line_2),
                          .data_out_vld(data_out_vld)
                          );
 
