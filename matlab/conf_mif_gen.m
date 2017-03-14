@@ -1,26 +1,34 @@
 % This script is used to genetrate the configuration mif file
 
+clear; clc;
+close all;
+
 % Remainder Group
 % # pixel per line
-line_pix_num = 95;
+line_pix_num = 94;
 
 % N_in
 batch_size = 16;
 
-remainder_group = [];
-
 extra_group = [];
 
 % remainder evalution
-line_pix_num_tmp = line_pix_num;
-while mod(line_pix_num_tmp, batch_size)
 
-    remainder_group = [remainder_group; mod(line_pix_num_tmp, batch_size)];
 
-    extra_group = [extra_group; batch_size - mod(line_pix_num_tmp, batch_size)];
+% line_pix_num_tmp = line_pix_num;
 
-    line_pix_num_tmp = line_pix_num_tmp - (batch_size - mod(line_pix_num_tmp, batch_size));
+remainder_tmp = ceil(line_pix_num/batch_size)*batch_size - line_pix_num;
 
+while (remainder_tmp)
+    
+%     line_pix_num_tmp = line_pix_num + (batch_size - mod(line_pix_num_tmp, batch_size));
+
+    extra_group = [extra_group; remainder_tmp];
+
+    line_pix_num_tmp = line_pix_num - remainder_tmp;
+    
+    remainder_tmp = ceil(line_pix_num_tmp/batch_size)*batch_size - line_pix_num_tmp;
+    
 end
 
 % Add the fist and last extra 0 to extra_group

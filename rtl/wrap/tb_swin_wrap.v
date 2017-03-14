@@ -48,7 +48,10 @@ module tb_swin_wrap();
 
 
    // Variables for Simulation
-   integer         in_file, out_file;
+   integer         in_file;
+   integer         line0_out_file;
+   integer         line1_out_file;
+   integer         line2_out_file;
    integer         ii, jj;
    integer         temp;
 

@@ -345,11 +345,11 @@ module decoder(/*AUTOARG*/
 
    // reg_wr_addr_inc_s0&1
    always @(posedge clk) begin
-      // conf_split[2] stands for 8
-      case(conf_split[2])
+      // conf_split[3] stands for 8
+      case(conf_split[3])
         1: reg_wr_addr_inc_s0 <= 3'b001;
         default: reg_wr_addr_inc_s0 <= 3'b000;
-      endcase // case (conf_split[2])
+      endcase // case (conf_split[3])
       reg_wr_addr_inc_s1 <= reg_wr_addr_inc_s0;
    end
 
@@ -388,8 +388,8 @@ module decoder(/*AUTOARG*/
    // reg_wr_data_tail_1
    always @(posedge clk) begin
       case (reg_shuf_flag_tail)
-        3'b100: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8-1:0], reg_wr_data_tail_0[8*8*3-1:8*8]};
-        3'b010: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8*2-1:0], reg_wr_data_tail_0[8*8*3-1:8*8*2]};
+        3'b101: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8-1:0], reg_wr_data_tail_0[8*8*3-1:8*8]};
+        3'b110: reg_wr_data_tail_1 <= {reg_wr_data_tail_0[8*8*2-1:0], reg_wr_data_tail_0[8*8*3-1:8*8*2]};
         default: reg_wr_data_tail_1 <= reg_wr_data_tail_0;
       endcase // case (reg_shuf_flag_tail)
    end
@@ -397,8 +397,8 @@ module decoder(/*AUTOARG*/
    // reg_wr_data_mask_1
    always @(posedge clk) begin
       case (reg_shuf_flag_tail)
-        3'b100: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8-1:0], reg_wr_data_mask_tail_0[8*3-1:8]};
-        3'b010: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8*2-1:0], reg_wr_data_mask_tail_0[8*3-1:8*2]};
+        3'b101: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8-1:0], reg_wr_data_mask_tail_0[8*3-1:8]};
+        3'b110: reg_wr_data_mask_tail_1 <= {reg_wr_data_mask_tail_0[8*2-1:0], reg_wr_data_mask_tail_0[8*3-1:8*2]};
         default: reg_wr_data_mask_tail_1 <= reg_wr_data_mask_tail_0;
       endcase // case (reg_shuf_flag_tail)
    end
@@ -445,10 +445,10 @@ module decoder(/*AUTOARG*/
    // insert the
    wire            flag_write_line_start;
 
-   assign flag_write = data_in_vld_d[2];
-   assign flag_write_line_end = data_in_vld_d[2] && (inline_cnt_d0==0);
+   assign flag_write = data_in_vld_d[3];
+   assign flag_write_line_end = data_in_vld_d[3] && (inline_cnt_d0==0);
    // Even d4 corresponds to inline_cnt_d2, but d3 here represents the next batch of input
-   assign flag_write_line_start = data_in_vld_d[2] && (inline_cnt_d1==0);
+   assign flag_write_line_start = data_in_vld_d[3] && (inline_cnt_d1==0);
 
    // wr_data_gpx
    // connection to wr_data_gpx are totally decided by group_wr_en_d0

@@ -89,6 +89,7 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
     |                     |                 | group_wr_en     | group_wr_en_d0     | group_wr_en_d1      | group_wr_en_d2  | group_wr_en_d3  | group_wr_en_d4  |                   |                      |
     |                     |                 | shuf_flag       | shuf_flag_d0       | shuf_flag_d1        | shuf_flag_d2    |                 |                 |                   |                      |
     |                     |                 | wr_data_0,mask0 | wr_data_1,mask1    |                     |                 |                 |                 |                   |                      |
+    |                     |                 |                 | flag_write         |                     |                 |                 |                 |                   |                      |
     |---------------------+-----------------+-----------------+--------------------+---------------------+-----------------+-----------------+-----------------+-------------------+----------------------|
     |                     |                 | wr_data_s0      | wr_data_s1         | BRAM control signal |                 |                 |                 |                   |                      |
     |                     |                 | wr_inc_s0       | wr_inc_s1          |                     |                 |                 |                 |                   |                      |
