@@ -2,18 +2,49 @@
 <DARoots Version="1" Minor="26">
   <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PPRDIR/../../../rtl/mux16_w8/mux16_w8.v">
+    <File Path="$PPRDIR/../../../rtl/sdp_ram/sdp_ram.v">
       <FileInfo>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../../rtl/decoder/decoder.v">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../rtl/dbram/dbram.v">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../rtl/bram_group/bram_group.v">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../rtl/wrap/swin_wrap.v">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PDATADIR/sources_1/ports.xml">
+      <FileInfo SFType="PortsDb"/>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="mux16_w8"/>
+      <Option Name="TopModule" Val="swin_wrap"/>
       <Option Name="TopLib" Val="work"/>
-      <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/mux16_w8/mux16_w8.v"/>
+      <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/wrap/swin_wrap.v"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>

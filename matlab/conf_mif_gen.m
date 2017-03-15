@@ -5,7 +5,7 @@ close all;
 
 % Remainder Group
 % # pixel per line
-line_pix_num = 94;
+line_pix_num = 92;
 
 % N_in
 batch_size = 16;

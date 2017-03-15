@@ -6,4 +6,4 @@
 # Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 #
 
-xst -ifn "mux16_w8.xst" -ofn "mux16_w8.srp" -intstyle ise
+xst -ifn "swin_wrap.xst" -ofn "swin_wrap.srp" -intstyle ise

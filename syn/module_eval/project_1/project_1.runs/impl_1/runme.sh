@@ -36,8 +36,8 @@ EAStep()
      fi
 }
 
-EAStep ngdbuild -intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc "mux16_w8.ucf" "mux16_w8.edf"
-EAStep map -intstyle pa -w "mux16_w8.ngd"
-EAStep par -intstyle pa "mux16_w8.ncd" -w "mux16_w8_routed.ncd"
-EAStep trce -intstyle ise -o "mux16_w8.twr" -v 30 -l 30 "mux16_w8_routed.ncd" "mux16_w8.pcf"
-EAStep xdl -secure -ncd2xdl -nopips "mux16_w8_routed.ncd" "mux16_w8_routed.xdl"
+EAStep ngdbuild -intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc "swin_wrap.ucf" "swin_wrap.edf"
+EAStep map -intstyle pa -w "swin_wrap.ngd"
+EAStep par -intstyle pa "swin_wrap.ncd" -w "swin_wrap_routed.ncd"
+EAStep trce -intstyle ise -o "swin_wrap.twr" -v 30 -l 30 "swin_wrap_routed.ncd" "swin_wrap.pcf"
+EAStep xdl -secure -ncd2xdl -nopips "swin_wrap_routed.ncd" "swin_wrap_routed.xdl"

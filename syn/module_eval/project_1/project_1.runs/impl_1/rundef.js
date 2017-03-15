@@ -27,15 +27,15 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "ngdbuild",
-         "-intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc \"mux16_w8.ucf\" \"mux16_w8.edf\"" );
+         "-intstyle ise -p xc7vx690tffg1930-2 -dd _ngo -uc \"swin_wrap.ucf\" \"swin_wrap.edf\"" );
 ISEStep( "map",
-         "-intstyle pa -w \"mux16_w8.ngd\"" );
+         "-intstyle pa -w \"swin_wrap.ngd\"" );
 ISEStep( "par",
-         "-intstyle pa \"mux16_w8.ncd\" -w \"mux16_w8_routed.ncd\"" );
+         "-intstyle pa \"swin_wrap.ncd\" -w \"swin_wrap_routed.ncd\"" );
 ISEStep( "trce",
-         "-intstyle ise -o \"mux16_w8.twr\" -v 30 -l 30 \"mux16_w8_routed.ncd\" \"mux16_w8.pcf\"" );
+         "-intstyle ise -o \"swin_wrap.twr\" -v 30 -l 30 \"swin_wrap_routed.ncd\" \"swin_wrap.pcf\"" );
 ISEStep( "xdl",
-         "-secure -ncd2xdl -nopips \"mux16_w8_routed.ncd\" \"mux16_w8_routed.xdl\"" );
+         "-secure -ncd2xdl -nopips \"swin_wrap_routed.ncd\" \"swin_wrap_routed.xdl\"" );
 
 
 

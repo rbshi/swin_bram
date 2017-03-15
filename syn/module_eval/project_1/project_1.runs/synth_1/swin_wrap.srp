@@ -1,0 +1,912 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: swin_wrap.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "swin_wrap.prj"
+
+---- Target Parameters
+Target Device                      : xc7vx690tffg1930-2
+Output File Name                   : "swin_wrap.ngc"
+
+---- Source Options
+Top Module Name                    : swin_wrap
+
+---- General Options
+Optimization Goal                  : speed
+Optimization Effort                : 1
+Netlist Hierarchy                  : rebuilt
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v" into library work
+Parsing module <sdp_ram>.
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/decoder/decoder.v" into library work
+Parsing module <decoder>.
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/dbram/dbram.v" into library work
+Parsing module <dbram>.
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/bram_group/bram_group.v" into library work
+Parsing module <bram_group>.
+Analyzing Verilog file "/home/rbshi/swin_bram/rtl/wrap/swin_wrap.v" into library work
+Parsing module <swin_wrap>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <swin_wrap>.
+
+Elaborating module <decoder(CONF_DATA_WIDTH=19,CONF_ADDR_WIDTH=4)>.
+WARNING:HDLCompiler:1127 - "/home/rbshi/swin_bram/rtl/decoder/decoder.v" Line 106: Assignment to inline_cnt_d2 ignored, since the identifier is never used
+WARNING:HDLCompiler:413 - "/home/rbshi/swin_bram/rtl/decoder/decoder.v" Line 196: Result of 5-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "/home/rbshi/swin_bram/rtl/decoder/decoder.v" Line 210: Result of 32-bit expression is truncated to fit in 9-bit target.
+
+Elaborating module <dbram(DATA_WIDTH=19,DEPTH=16,ADDR_WIDTH=4)>.
+
+Elaborating module <bram_group>.
+WARNING:HDLCompiler:413 - "/home/rbshi/swin_bram/rtl/bram_group/bram_group.v" Line 52: Result of 10-bit expression is truncated to fit in 9-bit target.
+WARNING:HDLCompiler:413 - "/home/rbshi/swin_bram/rtl/bram_group/bram_group.v" Line 60: Result of 10-bit expression is truncated to fit in 9-bit target.
+WARNING:HDLCompiler:413 - "/home/rbshi/swin_bram/rtl/bram_group/bram_group.v" Line 68: Result of 10-bit expression is truncated to fit in 9-bit target.
+WARNING:HDLCompiler:1016 - "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v" Line 41: Port CASCADEOUTA is not connected to this instance
+
+Elaborating module <sdp_ram>.
+
+Elaborating module <RAMB36E1(RDADDR_COLLISION_HWCONFIG="DELAYED_WRITE",SIM_COLLISION_CHECK="ALL",DOA_REG=0,DOB_REG=0,EN_ECC_READ="FALSE",EN_ECC_WRITE="FALSE",INIT_A=36'b0,INIT_B=36'b0,INIT_FILE="NONE",RAM_MODE="SDP",READ_WIDTH_A=72,READ_WIDTH_B=0,WRITE_WIDTH_A=0,WRITE_WIDTH_B=72,SRVAL_A=36'b0,SRVAL_B=36'b0,SIM_DEVICE="7SERIES",WRITE_MODE_A="WRITE_FIRST",WRITE_MODE_B="WRITE_FIRST")>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <swin_wrap>.
+    Related source file is "/home/rbshi/swin_bram/rtl/wrap/swin_wrap.v".
+        CONF_DATA_WIDTH = 19
+        CONF_ADDR_WIDTH = 4
+    Summary:
+	no macro.
+Unit <swin_wrap> synthesized.
+
+Synthesizing Unit <decoder>.
+    Related source file is "/home/rbshi/swin_bram/rtl/decoder/decoder.v".
+        CONF_DATA_WIDTH = 19
+        CONF_ADDR_WIDTH = 4
+    Register <reg_conf_offset_tail> equivalent to <offset_d0> has been removed
+    Found 3-bit register for signal <reg_wr_addr_reset>.
+    Found 4-bit register for signal <conf_bram_rd_addr>.
+    Found 9-bit register for signal <inline_cnt>.
+    Found 3-bit register for signal <shuf_flag>.
+    Found 192-bit register for signal <reg_wr_data_0>.
+    Found 192-bit register for signal <reg_wr_data_1>.
+    Found 24-bit register for signal <reg_wr_data_mask_0>.
+    Found 24-bit register for signal <reg_wr_data_mask_1>.
+    Found 3-bit register for signal <group_wr_en>.
+    Found 1-bit register for signal <ret_flag>.
+    Found 3-bit register for signal <group_wr_en_d0>.
+    Found 3-bit register for signal <group_wr_en_d1>.
+    Found 3-bit register for signal <group_wr_en_d2>.
+    Found 3-bit register for signal <group_wr_en_d3>.
+    Found 3-bit register for signal <group_wr_en_d4>.
+    Found 9-bit register for signal <inline_cnt_d0>.
+    Found 9-bit register for signal <inline_cnt_d1>.
+    Found 3-bit register for signal <shuf_flag_d0>.
+    Found 3-bit register for signal <shuf_flag_d1>.
+    Found 3-bit register for signal <shuf_flag_d2>.
+    Found 3-bit register for signal <offset_d0>.
+    Found 3-bit register for signal <offset_d1>.
+    Found 3-bit register for signal <offset_d2>.
+    Found 3-bit register for signal <offset_d3>.
+    Found 3-bit register for signal <offset_d4>.
+    Found 128-bit register for signal <pix_data_in_d0>.
+    Found 128-bit register for signal <pix_data_in_d1>.
+    Found 128-bit register for signal <pix_data_in_d2>.
+    Found 128-bit register for signal <pix_data_in_d3>.
+    Found 128-bit register for signal <pix_data_in_d4>.
+    Found 128-bit register for signal <pix_data_in_d5>.
+    Found 128-bit register for signal <pix_data_in_d6>.
+    Found 128-bit register for signal <pix_data_in_d7>.
+    Found 128-bit register for signal <reg_wr_data_s0>.
+    Found 128-bit register for signal <reg_wr_data_s1>.
+    Found 3-bit register for signal <reg_wr_addr_inc_s0>.
+    Found 3-bit register for signal <reg_wr_addr_inc_s1>.
+    Found 3-bit register for signal <reg_shuf_flag_tail>.
+    Found 24-bit register for signal <reg_wr_data_mask_tail_0>.
+    Found 192-bit register for signal <reg_wr_data_tail_0>.
+    Found 192-bit register for signal <reg_wr_data_tail_1>.
+    Found 24-bit register for signal <reg_wr_data_mask_tail_1>.
+    Found 192-bit register for signal <wr_data_gp0>.
+    Found 192-bit register for signal <wr_data_gp1>.
+    Found 192-bit register for signal <wr_data_gp2>.
+    Found 24-bit register for signal <wr_data_mask_gp0>.
+    Found 24-bit register for signal <wr_data_mask_gp1>.
+    Found 24-bit register for signal <wr_data_mask_gp2>.
+    Found 3-bit register for signal <wr_data_en_gp>.
+    Found 3-bit register for signal <wr_addr_inc_gp0>.
+    Found 3-bit register for signal <wr_addr_inc_gp1>.
+    Found 3-bit register for signal <wr_addr_inc_gp2>.
+    Found 192-bit register for signal <rd_data_deshuf_gp0>.
+    Found 192-bit register for signal <rd_data_deshuf_gp1>.
+    Found 192-bit register for signal <rd_data_deshuf_gp2>.
+    Found 128-bit register for signal <rd_data_deoffset_gp0>.
+    Found 128-bit register for signal <rd_data_deoffset_gp1>.
+    Found 128-bit register for signal <rd_data_deoffset_gp2>.
+    Found 128-bit register for signal <data_out_line_0>.
+    Found 128-bit register for signal <data_out_line_1>.
+    Found 128-bit register for signal <data_out_line_2>.
+    Found 9-bit register for signal <data_in_vld_d>.
+    Found 4-bit adder for signal <conf_bram_rd_addr[3]_GND_2_o_add_39_OUT> created at line 196.
+    Found 9-bit subtractor for signal <GND_2_o_GND_2_o_sub_45_OUT<8:0>> created at line 210.
+    Found 8x24-bit Read Only RAM for signal <conf_offset[2]_GND_2_o_wide_mux_57_OUT>
+    Found 192-bit 8-to-1 multiplexer for signal <conf_offset[2]_GND_2_o_wide_mux_55_OUT> created at line 256.
+    Found 128-bit 16-to-1 multiplexer for signal <conf_split[3]_GND_2_o_wide_mux_70_OUT> created at line 325.
+    Found 192-bit 8-to-1 multiplexer for signal <reg_conf_offset_tail[2]_GND_2_o_wide_mux_83_OUT> created at line 376.
+    Found 128-bit 8-to-1 multiplexer for signal <offset_d4[2]_rd_data_deshuf_gp0[183]_wide_mux_177_OUT> created at line 613.
+    Found 128-bit 8-to-1 multiplexer for signal <offset_d4[2]_rd_data_deshuf_gp1[183]_wide_mux_180_OUT> created at line 625.
+    Found 128-bit 8-to-1 multiplexer for signal <offset_d4[2]_rd_data_deshuf_gp2[183]_wide_mux_183_OUT> created at line 637.
+    Found 3-bit 4-to-1 multiplexer for signal <_n0428> created at line 499.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred 4246 D-type flip-flop(s).
+	inferred  11 Multiplexer(s).
+Unit <decoder> synthesized.
+
+Synthesizing Unit <dbram>.
+    Related source file is "/home/rbshi/swin_bram/rtl/dbram/dbram.v".
+        DATA_WIDTH = 19
+        DEPTH = 16
+        ADDR_WIDTH = 4
+    Found 16x19-bit dual-port RAM <Mram_ram> for signal <ram>.
+    Found 19-bit register for signal <rd_data_out>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred  19 D-type flip-flop(s).
+Unit <dbram> synthesized.
+
+Synthesizing Unit <bram_group>.
+    Related source file is "/home/rbshi/swin_bram/rtl/bram_group/bram_group.v".
+    Found 9-bit register for signal <wr_addr_bram1>.
+    Found 9-bit register for signal <wr_addr_bram2>.
+    Found 9-bit register for signal <wr_addr_bram0>.
+    Found 9-bit adder for signal <wr_addr_bram0[8]_GND_5_o_add_2_OUT> created at line 52.
+    Found 9-bit adder for signal <wr_addr_bram1[8]_GND_5_o_add_7_OUT> created at line 60.
+    Found 9-bit adder for signal <wr_addr_bram2[8]_GND_5_o_add_12_OUT> created at line 68.
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+	inferred  27 D-type flip-flop(s).
+Unit <bram_group> synthesized.
+
+Synthesizing Unit <sdp_ram>.
+    Related source file is "/home/rbshi/swin_bram/rtl/sdp_ram/sdp_ram.v".
+        MEM_ADDR_WIDTH = 9
+        MEM_WORD_WIDTH = 64
+        MEM_WR_MASK_WIDTH = 8
+        MIF_FILE = "NONE"
+    Summary:
+	no macro.
+Unit <sdp_ram> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 2
+ 16x19-bit dual-port RAM                               : 1
+ 8x24-bit single-port Read Only RAM                    : 1
+# Adders/Subtractors                                   : 11
+ 4-bit adder                                           : 1
+ 9-bit adder                                           : 9
+ 9-bit subtractor                                      : 1
+# Registers                                            : 66
+ 1-bit register                                        : 1
+ 128-bit register                                      : 16
+ 19-bit register                                       : 1
+ 192-bit register                                      : 7
+ 24-bit register                                       : 4
+ 3-bit register                                        : 20
+ 4-bit register                                        : 1
+ 576-bit register                                      : 1
+ 72-bit register                                       : 1
+ 9-bit register                                        : 14
+# Multiplexers                                         : 11
+ 128-bit 16-to-1 multiplexer                           : 1
+ 128-bit 8-to-1 multiplexer                            : 3
+ 192-bit 8-to-1 multiplexer                            : 2
+ 3-bit 2-to-1 multiplexer                              : 2
+ 3-bit 4-to-1 multiplexer                              : 1
+ 4-bit 2-to-1 multiplexer                              : 1
+ 9-bit 2-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:2404 -  FFs/Latches <reg_wr_addr_inc_s0<2:1>> (without init value) have a constant value of 0 in block <decoder>.
+WARNING:Xst:2404 -  FFs/Latches <reg_wr_addr_inc_s1<2:1>> (without init value) have a constant value of 0 in block <decoder>.
+
+Synthesizing (advanced) Unit <bram_group>.
+The following registers are absorbed into counter <wr_addr_bram1>: 1 register on signal <wr_addr_bram1>.
+The following registers are absorbed into counter <wr_addr_bram2>: 1 register on signal <wr_addr_bram2>.
+The following registers are absorbed into counter <wr_addr_bram0>: 1 register on signal <wr_addr_bram0>.
+Unit <bram_group> synthesized (advanced).
+
+Synthesizing (advanced) Unit <dbram>.
+INFO:Xst:3217 - HDL ADVISOR - Register <rd_data_out> currently described with an asynchronous reset, could be combined with distributed RAM <Mram_ram> for implementation on block RAM resources if you made this reset synchronous instead.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 19-bit                    |          |
+    |     clkA           | connected to signal <clk>           | rise     |
+    |     weA            | connected to signal <wr_data_en>    | high     |
+    |     addrA          | connected to signal <wr_addr>       |          |
+    |     diA            | connected to signal <wr_data_in>    |          |
+    -----------------------------------------------------------------------
+    | Port B                                                              |
+    |     aspect ratio   | 16-word x 19-bit                    |          |
+    |     addrB          | connected to signal <rd_addr>       |          |
+    |     doB            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <dbram> synthesized (advanced).
+
+Synthesizing (advanced) Unit <decoder>.
+The following registers are absorbed into counter <conf_bram_rd_addr>: 1 register on signal <conf_bram_rd_addr>.
+The following registers are absorbed into counter <inline_cnt>: 1 register on signal <inline_cnt>.
+INFO:Xst:3217 - HDL ADVISOR - Register <reg_wr_data_mask_0> currently described with an asynchronous reset, could be combined with distributed RAM <Mram_conf_offset[2]_GND_2_o_wide_mux_57_OUT> for implementation on block RAM resources if you made this reset synchronous instead.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 24-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <conf_bram_rd_data_out<2:0>> |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+Unit <decoder> synthesized (advanced).
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_184> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_185> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_186> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_187> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_188> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_189> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_190> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp0_191> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_184> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_185> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_186> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_187> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_188> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_189> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_190> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp1_191> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_184> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_185> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_186> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_187> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_188> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_189> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_190> of sequential type is unconnected in block <decoder>.
+WARNING:Xst:2677 - Node <rd_data_deshuf_gp2_191> of sequential type is unconnected in block <decoder>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 2
+ 16x19-bit dual-port distributed RAM                   : 1
+ 8x24-bit single-port distributed Read Only RAM        : 1
+# Counters                                             : 11
+ 4-bit up counter                                      : 1
+ 9-bit down counter                                    : 1
+ 9-bit up counter                                      : 9
+# Registers                                            : 4224
+ Flip-Flops                                            : 4224
+# Multiplexers                                         : 9
+ 128-bit 16-to-1 multiplexer                           : 1
+ 128-bit 8-to-1 multiplexer                            : 3
+ 192-bit 8-to-1 multiplexer                            : 2
+ 3-bit 2-to-1 multiplexer                              : 2
+ 3-bit 4-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+INFO:Xst:2261 - The FF/Latch <shuf_flag_d0_0> in Unit <decoder> is equivalent to the following FF/Latch, which will be removed : <reg_shuf_flag_tail_2> 
+INFO:Xst:2261 - The FF/Latch <shuf_flag_d0_1> in Unit <decoder> is equivalent to the following FF/Latch, which will be removed : <reg_shuf_flag_tail_0> 
+INFO:Xst:2261 - The FF/Latch <shuf_flag_d0_2> in Unit <decoder> is equivalent to the following FF/Latch, which will be removed : <reg_shuf_flag_tail_1> 
+WARNING:Xst:1710 - FF/Latch <reg_wr_data_mask_0_23> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_mask_tail_0_23> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg_wr_data_tail_0_191> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_190> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_189> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_188> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_187> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_186> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_185> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_tail_0_184> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_127> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_126> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_125> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_124> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_184> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_185> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_186> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_187> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_188> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_189> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_190> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_0_191> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_120> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_121> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_122> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s0_123> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_120> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_121> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_122> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_123> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_124> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_125> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_126> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <reg_wr_data_s1_127> (without init value) has a constant value of 0 in block <decoder>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <reg_wr_data_mask_0_7> in Unit <decoder> is equivalent to the following 8 FFs/Latches, which will be removed : <reg_wr_data_mask_0_8> <reg_wr_data_mask_0_9> <reg_wr_data_mask_0_10> <reg_wr_data_mask_0_11> <reg_wr_data_mask_0_12> <reg_wr_data_mask_0_13> <reg_wr_data_mask_0_14> <reg_wr_data_mask_0_15> 
+INFO:Xst:2261 - The FF/Latch <reg_wr_data_mask_tail_0_7> in Unit <decoder> is equivalent to the following 8 FFs/Latches, which will be removed : <reg_wr_data_mask_tail_0_8> <reg_wr_data_mask_tail_0_9> <reg_wr_data_mask_tail_0_10> <reg_wr_data_mask_tail_0_11> <reg_wr_data_mask_tail_0_12> <reg_wr_data_mask_tail_0_13> <reg_wr_data_mask_tail_0_14> <reg_wr_data_mask_tail_0_15> 
+
+Optimizing unit <swin_wrap> ...
+
+Optimizing unit <decoder> ...
+
+Optimizing unit <dbram> ...
+WARNING:Xst:1710 - FF/Latch <u_decoder/inline_cnt_8> (without init value) has a constant value of 0 in block <swin_wrap>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <u_decoder/inline_cnt_d0_8> (without init value) has a constant value of 0 in block <swin_wrap>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <u_decoder/inline_cnt_d1_8> (without init value) has a constant value of 0 in block <swin_wrap>. This FF/Latch will be trimmed during the optimization process.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block swin_wrap, actual ratio is 1.
+
+Final Macro Processing ...
+
+Processing Unit <swin_wrap> :
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_127>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_126>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_125>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_124>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_123>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_122>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_121>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_120>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_119>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_118>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_117>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_116>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_115>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_114>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_113>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_112>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_111>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_110>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_109>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_108>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_107>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_106>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_105>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_104>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_103>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_102>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_101>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_100>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_99>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_98>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_97>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_96>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_95>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_94>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_93>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_92>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_91>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_90>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_89>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_88>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_87>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_86>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_85>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_84>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_83>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_82>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_81>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_80>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_79>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_78>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_77>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_76>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_75>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_74>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_73>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_72>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_71>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_70>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_69>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_68>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_67>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_66>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_65>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_64>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_63>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_62>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_61>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_60>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_59>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_58>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_57>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_56>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_55>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_54>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_53>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_52>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_51>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_50>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_49>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_48>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_47>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_46>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_45>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_44>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_43>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_42>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_41>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_40>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_39>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_38>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_37>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_36>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_35>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_34>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_33>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_32>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_31>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_30>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_29>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_28>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_27>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_26>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_25>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_24>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_23>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_22>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_21>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_20>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_19>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_18>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_17>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_16>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_15>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_14>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_13>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_12>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_11>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_10>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_9>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_8>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_7>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_6>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_5>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_4>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_3>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_2>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_1>.
+	Found 6-bit shift register for signal <u_decoder/pix_data_in_d7_0>.
+	Found 3-bit shift register for signal <u_decoder/group_wr_en_d4_2>.
+	Found 3-bit shift register for signal <u_decoder/group_wr_en_d4_1>.
+	Found 3-bit shift register for signal <u_decoder/group_wr_en_d4_0>.
+	Found 4-bit shift register for signal <u_decoder/offset_d4_2>.
+	Found 4-bit shift register for signal <u_decoder/offset_d4_1>.
+	Found 4-bit shift register for signal <u_decoder/offset_d4_0>.
+	Found 2-bit shift register for signal <u_decoder/shuf_flag_d2_2>.
+	Found 2-bit shift register for signal <u_decoder/shuf_flag_d2_1>.
+	Found 2-bit shift register for signal <u_decoder/shuf_flag_d2_0>.
+	Found 2-bit shift register for signal <u_decoder/reg_wr_addr_inc_s1>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_127>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_126>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_125>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_124>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_123>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_122>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_121>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_120>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_119>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_118>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_117>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_116>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_115>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_114>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_113>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_112>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_111>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_110>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_109>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_108>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_107>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_106>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_105>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_104>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_103>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_102>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_101>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_100>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_99>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_98>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_97>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_96>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_95>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_94>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_93>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_92>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_91>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_90>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_89>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_88>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_87>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_86>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_85>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_84>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_83>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_82>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_81>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_80>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_79>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_78>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_77>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_76>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_75>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_74>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_73>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_72>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_71>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_70>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_69>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_68>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_67>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_66>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_65>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_64>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_63>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_62>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_61>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_60>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_59>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_58>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_57>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_56>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_55>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_54>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_53>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_52>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_51>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_50>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_49>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_48>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_47>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_46>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_45>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_44>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_43>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_42>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_41>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_40>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_39>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_38>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_37>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_36>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_35>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_34>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_33>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_32>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_31>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_30>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_29>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_28>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_27>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_26>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_25>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_24>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_23>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_22>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_21>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_20>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_19>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_18>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_17>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_16>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_15>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_14>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_13>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_12>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_11>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_10>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_9>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_8>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_7>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_6>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_5>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_4>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_3>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_2>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_1>.
+	Found 2-bit shift register for signal <u_decoder/pix_data_in_d1_0>.
+	Found 5-bit shift register for signal <u_decoder/data_in_vld_d_8>.
+	Found 2-bit shift register for signal <u_decoder/data_in_vld_d_3>.
+	Found 2-bit shift register for signal <u_decoder/data_in_vld_d_1>.
+Unit <swin_wrap> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 3200
+ Flip-Flops                                            : 3200
+# Shift Registers                                      : 269
+ 2-bit shift register                                  : 134
+ 3-bit shift register                                  : 3
+ 4-bit shift register                                  : 3
+ 5-bit shift register                                  : 1
+ 6-bit shift register                                  : 128
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : swin_wrap.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 5405
+#      GND                         : 14
+#      INV                         : 12
+#      LUT1                        : 72
+#      LUT2                        : 14
+#      LUT3                        : 631
+#      LUT4                        : 86
+#      LUT5                        : 1556
+#      LUT6                        : 2832
+#      MUXCY                       : 79
+#      MUXF7                       : 7
+#      VCC                         : 13
+#      XORCY                       : 89
+# FlipFlops/Latches                : 3341
+#      FD                          : 2532
+#      FDC                         : 434
+#      FDCE                        : 18
+#      FDE                         : 269
+#      FDP                         : 3
+#      FDPE                        : 1
+#      FDR                         : 3
+#      FDRE                        : 81
+# RAMS                             : 13
+#      RAM32M                      : 3
+#      RAM32X1D                    : 1
+#      RAMB36E1                    : 9
+# Shift Registers                  : 269
+#      SRLC16E                     : 269
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 539
+#      IBUF                        : 154
+#      OBUF                        : 385
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 7vx690tffg1930-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:            3341  out of  866400     0%  
+ Number of Slice LUTs:                 5486  out of  433200     1%  
+    Number used as Logic:              5203  out of  433200     1%  
+    Number used as Memory:              283  out of  174200     0%  
+       Number used as RAM:               14
+       Number used as SRL:              269
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:   5674
+   Number with an unused Flip Flop:    2333  out of   5674    41%  
+   Number with an unused LUT:           188  out of   5674     3%  
+   Number of fully used LUT-FF pairs:  3153  out of   5674    55%  
+   Number of unique control sets:        19
+
+IO Utilization: 
+ Number of IOs:                         540
+ Number of bonded IOBs:                 540  out of   1000    54%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                9  out of   1470     0%  
+    Number using Block RAM only:          9
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 3623  |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 2.163ns (Maximum Frequency: 462.406MHz)
+   Minimum input arrival time before clock: 1.364ns
+   Maximum output required time after clock: 0.587ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 2.163ns (frequency: 462.406MHz)
+  Total number of paths / destination ports: 27947 / 4372
+-------------------------------------------------------------------------
+Delay:               2.163ns (Levels of Logic = 3)
+  Source:            u_decoder/inline_cnt_7 (FF)
+  Destination:       u_decoder/group_wr_en_2 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: u_decoder/inline_cnt_7 to u_decoder/group_wr_en_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             4   0.236   0.512  inline_cnt_7 (inline_cnt_7)
+     LUT3:I0->O            8   0.043   0.389  GND_2_o_GND_2_o_equal_38_o<8>_SW0 (N11)
+     LUT6:I5->O            7   0.043   0.384  GND_2_o_GND_2_o_equal_38_o<8> (GND_2_o_GND_2_o_equal_38_o)
+     LUT2:I1->O            3   0.043   0.351  data_in_vld_d[1]_GND_2_o_AND_5_o1 (data_in_vld_d[1]_GND_2_o_AND_5_o)
+     FDCE:CE                   0.161          group_wr_en_0
+    ----------------------------------------
+    Total                      2.163ns (0.526ns logic, 1.637ns route)
+                                       (24.3% logic, 75.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 628 / 628
+-------------------------------------------------------------------------
+Offset:              1.364ns (Levels of Logic = 4)
+  Source:            data_in_vld (PAD)
+  Destination:       u_decoder/conf_bram_rd_addr_3 (FF)
+  Destination Clock: clk rising
+
+  Data Path: data_in_vld to u_decoder/conf_bram_rd_addr_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   0.000   0.410  data_in_vld_IBUF (data_in_vld_IBUF)
+     begin scope: 'u_decoder:data_in_vld'
+     LUT4:I2->O            1   0.043   0.350  data_in_vld_GND_2_o_AND_6_o_SW0 (N13)
+     LUT6:I5->O            4   0.043   0.356  data_in_vld_GND_2_o_AND_6_o (data_in_vld_GND_2_o_AND_6_o)
+     FDCE:CE                   0.161          conf_bram_rd_addr_0
+    ----------------------------------------
+    Total                      1.364ns (0.247ns logic, 1.117ns route)
+                                       (18.1% logic, 81.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 385 / 385
+-------------------------------------------------------------------------
+Offset:              0.587ns (Levels of Logic = 2)
+  Source:            u_decoder/data_out_line_1_0 (FF)
+  Destination:       data_out_line_1<0> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: u_decoder/data_out_line_1_0 to data_out_line_1<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               3   0.236   0.351  data_out_line_1_0 (data_out_line_1_0)
+     end scope: 'u_decoder:data_out_line_1<0>'
+     OBUF:I->O                 0.000          data_out_line_1_0_OBUF (data_out_line_1<0>)
+    ----------------------------------------
+    Total                      0.587ns (0.236ns logic, 0.351ns route)
+                                       (40.2% logic, 59.8% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    2.163|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 29.00 secs
+Total CPU time to Xst completion: 28.71 secs
+ 
+--> 
+
+
+Total memory usage is 643656 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   70 (   0 filtered)
+Number of infos    :    7 (   0 filtered)
+

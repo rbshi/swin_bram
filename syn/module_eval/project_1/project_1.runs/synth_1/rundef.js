@@ -27,7 +27,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "xst",
-         "-ifn \"mux16_w8.xst\" -ofn \"mux16_w8.srp\" -intstyle ise" );
+         "-ifn \"swin_wrap.xst\" -ofn \"swin_wrap.srp\" -intstyle ise" );
 
 
 

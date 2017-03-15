@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep xst -ifn "mux16_w8.xst" -ofn "mux16_w8.srp" -intstyle ise
+EAStep xst -ifn "swin_wrap.xst" -ofn "swin_wrap.srp" -intstyle ise

@@ -4,9 +4,9 @@
     <Filter Type="Srcs"/>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="mux16_w8"/>
+      <Option Name="TopModule" Val="swin_wrap"/>
       <Option Name="TopLib" Val="work"/>
-      <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/mux16_w8/mux16_w8.v"/>
+      <Option Name="TopRTLFile" Val="$PPRDIR/../../../rtl/wrap/swin_wrap.v"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
       <Option Name="SrcSet" Val="sources_1"/>
     </Config>
