@@ -6,11 +6,11 @@ clc; clear;
 close all;
 
 
-frame_width = 341;     % N_x
-frame_height = 123;
+frame_width = 1920;     % N_x
+frame_height = 1080;
 
 % batch_size of the pixel input
-N_in = 16;
+N_in = 32;
 
 % word_width, multiple width/depth combinations could be configured for a
 % RAM36, we use the 512x72 config to fully ultilize the RAM resource.
