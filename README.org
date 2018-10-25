@@ -157,3 +157,10 @@ At first, a configuration BRAM is set to store some parameters calculated offlin
      | wr_addr_reset         | O   |                    3 | address reset sig for each BRAM group |
 
 **** bram_group
+
+
+
+** Generalization Update (Reboot this work for the journal paper)
+*** TODO-List
+- 
+- 
